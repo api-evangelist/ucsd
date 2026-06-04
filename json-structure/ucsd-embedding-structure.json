@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ucsd/main/json-structure/ucsd-embedding-structure.json",
+  "name": "TritonAIEmbeddingRequest",
+  "description": "JSON Structure for the TritonAI embedding request object (POST /v1/embeddings).",
+  "type": "object",
+  "properties": {
+    "model": { "type": "string", "description": "Embedding model identifier." },
+    "input": {
+      "type": "array",
+      "description": "Input text(s) to embed.",
+      "items": { "type": "string" }
+    },
+    "timeout": { "type": "int32", "description": "Request timeout in seconds." }
+  },
+  "required": ["model"]
+}

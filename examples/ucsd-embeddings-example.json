@@ -1,0 +1,15 @@
+{
+  "request": {
+    "model": "text-embedding-3-small",
+    "input": ["UC San Diego", "TritonAI gateway"]
+  },
+  "response": {
+    "object": "list",
+    "model": "text-embedding-3-small",
+    "data": [
+      { "object": "embedding", "index": 0, "embedding": [0.0123, -0.0456, 0.0789] },
+      { "object": "embedding", "index": 1, "embedding": [-0.0021, 0.0334, 0.0567] }
+    ],
+    "usage": { "prompt_tokens": 6, "total_tokens": 6 }
+  }
+}

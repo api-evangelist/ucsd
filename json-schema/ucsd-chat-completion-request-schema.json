@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ucsd/main/json-schema/ucsd-chat-completion-request-schema.json",
+  "title": "TritonAI Chat Completion Request",
+  "description": "Request body for POST /v1/chat/completions on the UC San Diego TritonAI LiteLLM gateway. Derived from https://tritonai-api.ucsd.edu/openapi.json.",
+  "type": "object",
+  "required": ["model", "messages"],
+  "additionalProperties": true,
+  "properties": {
+    "model": {
+      "type": "string",
+      "description": "Model identifier as listed by GET /v1/models."
+    },
+    "messages": {
+      "type": "array",
+      "description": "Conversation messages.",
+      "items": {
+        "type": "object",
+        "required": ["role"],
+        "additionalProperties": true,
+        "properties": {
+          "role": {
+            "type": "string",
+            "enum": ["system", "user", "assistant", "tool", "function", "developer"]
+          },
+          "content": {
+            "oneOf": [
+              { "type": "string" },
+              {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["type"],
+                  "additionalProperties": true,
+                  "properties": {
+                    "type": { "type": "string", "enum": ["text", "image_url", "input_audio"] },
+                    "text": { "type": "string" },
+                    "image_url": {
+                      "oneOf": [
+                        { "type": "string" },
+                        { "type": "object", "additionalProperties": true }
+                      ]
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "name": { "type": "string" }
+        }
+      }
+    },
+    "temperature": { "type": "number" },
+    "top_p": { "type": "number" },
+    "n": { "type": "integer" },
+    "stream": { "type": "boolean" },
+    "max_tokens": { "type": "integer" }
+  }
+}

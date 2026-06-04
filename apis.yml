@@ -71,6 +71,26 @@ apis:
         url: https://tritonai.ucsd.edu/developer-apis/index.html
       - type: SignUp
         url: https://tritonai.ucsd.edu/developer-apis/index.html
+      - type: OpenAPI
+        url: openapi/ucsd-tritonai.yaml
+      - type: x-json-schema
+        url: json-schema/ucsd-chat-completion-request-schema.json
+      - type: x-json-schema
+        url: json-schema/ucsd-embedding-request-schema.json
+      - type: x-json-structure
+        url: json-structure/ucsd-chat-completion-structure.json
+      - type: x-json-structure
+        url: json-structure/ucsd-embedding-structure.json
+      - type: x-example
+        url: examples/ucsd-chat-completion-example.json
+      - type: x-example
+        url: examples/ucsd-embeddings-example.json
+      - type: x-spectral-rules
+        url: rules/ucsd-rules.yml
+      - type: x-vocabulary
+        url: vocabulary/ucsd-vocabulary.yml
+      - type: x-json-ld
+        url: json-ld/ucsd-context.jsonld
   - aid: ucsd:library-digital-collections
     name: UC San Diego Library Digital Collections
     description: >-

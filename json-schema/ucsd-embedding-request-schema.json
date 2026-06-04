@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ucsd/main/json-schema/ucsd-embedding-request-schema.json",
+  "title": "TritonAI Embedding Request",
+  "description": "Request body for POST /v1/embeddings on the UC San Diego TritonAI LiteLLM gateway. Derived from https://tritonai-api.ucsd.edu/openapi.json.",
+  "type": "object",
+  "required": ["model"],
+  "additionalProperties": true,
+  "properties": {
+    "model": {
+      "type": "string",
+      "description": "Embedding model identifier."
+    },
+    "input": {
+      "type": "array",
+      "description": "Input text(s) to embed.",
+      "default": [],
+      "items": { "type": "string" }
+    },
+    "timeout": {
+      "type": "integer",
+      "default": 600,
+      "description": "Request timeout in seconds."
+    }
+  }
+}

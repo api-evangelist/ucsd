@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ucsd/main/json-structure/ucsd-chat-completion-structure.json",
+  "name": "TritonAIChatCompletionRequest",
+  "description": "JSON Structure for the TritonAI chat completion request object (POST /v1/chat/completions).",
+  "type": "object",
+  "properties": {
+    "model": { "type": "string", "description": "Model identifier." },
+    "messages": {
+      "type": "array",
+      "description": "Ordered conversation messages.",
+      "items": {
+        "type": "object",
+        "name": "ChatMessage",
+        "properties": {
+          "role": { "type": "string", "description": "Message role: system, user, assistant, tool, function, or developer." },
+          "content": { "type": "string", "description": "Message content; may be plain text or an array of typed content parts." },
+          "name": { "type": "string", "description": "Optional participant name." }
+        },
+        "required": ["role"]
+      }
+    },
+    "temperature": { "type": "number", "description": "Sampling temperature." },
+    "top_p": { "type": "number", "description": "Nucleus sampling probability mass." },
+    "n": { "type": "int32", "description": "Number of completions to generate." },
+    "stream": { "type": "boolean", "description": "Whether to stream partial results." },
+    "max_tokens": { "type": "int32", "description": "Maximum tokens to generate." }
+  },
+  "required": ["model", "messages"]
+}

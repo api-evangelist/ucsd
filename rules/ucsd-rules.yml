@@ -1,0 +1,48 @@
+extends: []
+formats:
+  - oas3
+documentationUrl: https://tritonai.ucsd.edu/developer-apis/index.html
+rules:
+  ucsd-info-contact:
+    description: TritonAI API info object should include a contact (tritonai@ucsd.edu).
+    severity: warn
+    given: $.info
+    then:
+      field: contact
+      function: truthy
+  ucsd-bearer-security:
+    description: TritonAI requires an issued API key as a Bearer token.
+    severity: warn
+    given: $.components.securitySchemes
+    then:
+      field: bearerAuth
+      function: truthy
+  ucsd-openai-compatible-paths:
+    description: Core inference paths should follow the OpenAI-compatible /v1 convention.
+    severity: info
+    given: $.paths[*]~
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/(v1/)?(chat/completions|completions|embeddings|models|images/generations)$|^/audio/(speech|transcriptions)$"
+  ucsd-operation-id:
+    description: Every operation must declare an operationId.
+    severity: error
+    given: $.paths[*][get,post,put,delete,patch]
+    then:
+      field: operationId
+      function: truthy
+  ucsd-operation-summary:
+    description: Every operation should declare a human-readable summary.
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch]
+    then:
+      field: summary
+      function: truthy
+  ucsd-validation-error-shape:
+    description: Validation errors should reference the HTTPValidationError schema.
+    severity: info
+    given: $.paths[*][*].responses['422'].content['application/json'].schema
+    then:
+      field: $ref
+      function: truthy

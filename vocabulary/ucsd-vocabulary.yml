@@ -1,0 +1,50 @@
+vocabulary:
+  name: UC San Diego TritonAI API Vocabulary
+  description: >-
+    Controlled vocabulary for the UC San Diego TritonAI developer API, an
+    OpenAI-compatible LLM gateway powered by LiteLLM. Terms are derived from the
+    live OpenAPI document at https://tritonai-api.ucsd.edu/openapi.json.
+  version: 1.0.0
+  terms:
+    - term: model
+      definition: Identifier of a language, embedding, image, or audio model exposed by the gateway.
+      tags: [core, request]
+    - term: messages
+      definition: Ordered list of chat messages forming the conversation passed to chat completions.
+      tags: [chat, request]
+    - term: role
+      definition: The author of a message, one of system, user, assistant, tool, function, or developer.
+      tags: [chat, request]
+    - term: content
+      definition: The body of a message, either a plain string or an array of typed content parts (text, image_url, input_audio).
+      tags: [chat, request]
+    - term: chat completion
+      definition: A model-generated response to a chat conversation returned by POST /v1/chat/completions.
+      tags: [chat, response]
+    - term: completion
+      definition: A text continuation generated for a prompt by POST /v1/completions.
+      tags: [completions, response]
+    - term: embedding
+      definition: A numeric vector representation of input text produced by POST /v1/embeddings.
+      tags: [embeddings, response]
+    - term: input
+      definition: The text or list of texts submitted to the embeddings endpoint.
+      tags: [embeddings, request]
+    - term: image generation
+      definition: Creation of images from a text prompt via POST /v1/images/generations.
+      tags: [images]
+    - term: audio speech
+      definition: Text-to-speech synthesis via POST /audio/speech.
+      tags: [audio]
+    - term: audio transcription
+      definition: Speech-to-text transcription via POST /audio/transcriptions.
+      tags: [audio]
+    - term: usage
+      definition: Token accounting (prompt_tokens, completion_tokens, total_tokens) returned with a response.
+      tags: [response, billing]
+    - term: API key
+      definition: Issued credential passed as a Bearer token to authenticate approved UC San Diego users.
+      tags: [auth, security]
+    - term: gateway
+      definition: The centralized LiteLLM proxy through which all TritonAI model traffic is routed.
+      tags: [infrastructure]

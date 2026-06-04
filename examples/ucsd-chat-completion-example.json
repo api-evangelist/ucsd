@@ -1,0 +1,32 @@
+{
+  "request": {
+    "model": "gpt-4o",
+    "messages": [
+      { "role": "system", "content": "You are a helpful UC San Diego campus assistant." },
+      { "role": "user", "content": "Summarize the TritonAI gateway in one sentence." }
+    ],
+    "temperature": 0.2,
+    "max_tokens": 128
+  },
+  "response": {
+    "id": "chatcmpl-abc123",
+    "object": "chat.completion",
+    "created": 1717372800,
+    "model": "gpt-4o",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "TritonAI is UC San Diego's secure, centralized LLM gateway providing OpenAI-compatible access to a curated set of models."
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 32,
+      "completion_tokens": 24,
+      "total_tokens": 56
+    }
+  }
+}

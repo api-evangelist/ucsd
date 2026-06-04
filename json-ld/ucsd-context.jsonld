@@ -1,0 +1,37 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "ucsd": "https://developer.ucsd.edu/ns#",
+    "schema": "https://schema.org/",
+    "name": "schema:name",
+    "url": "schema:url",
+    "description": "schema:description",
+    "organization": {
+      "@id": "schema:CollegeOrUniversity",
+      "@type": "@id"
+    },
+    "TritonAIChatCompletion": "ucsd:TritonAIChatCompletion",
+    "TritonAIEmbedding": "ucsd:TritonAIEmbedding",
+    "model": "ucsd:model",
+    "messages": {
+      "@id": "ucsd:messages",
+      "@container": "@list"
+    },
+    "role": "ucsd:role",
+    "content": "schema:text",
+    "input": "ucsd:input",
+    "embedding": {
+      "@id": "ucsd:embedding",
+      "@container": "@list"
+    },
+    "temperature": "ucsd:temperature",
+    "max_tokens": "ucsd:maxTokens",
+    "usage": "ucsd:usage",
+    "total_tokens": "ucsd:totalTokens",
+    "apiKey": "ucsd:apiKey"
+  },
+  "@type": "CollegeOrUniversity",
+  "name": "University of California, San Diego",
+  "url": "https://www.ucsd.edu/",
+  "description": "Public research university in La Jolla, California, operating the TritonAI OpenAI-compatible LLM gateway for approved campus users."
+}
