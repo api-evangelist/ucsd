@@ -1,0 +1,111 @@
+---
+aid: ucsd
+name: University of California, San Diego
+description: >-
+  University of California, San Diego (UCSD) is a public research university in
+  La Jolla, California, ranked #36 in the QS World University Rankings 2025. Its
+  developer and API footprint is operated primarily by Information Technology
+  Services (ITS) through a developer guide and an SSO-gated Web API Portal, with
+  most institutional APIs restricted to UCSD staff, students, and faculty who
+  hold a Single Sign-On account. UCSD also runs TritonAI, an LLM gateway for
+  campus users, and maintains active open-source GitHub organizations and a
+  publicly browsable Library Digital Collections repository.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/ucsd/refs/heads/main/apis.yml
+tags:
+  - Education
+  - Higher Education
+  - University
+  - Research
+  - United States
+  - California
+created: '2026-06-03'
+modified: '2026-06-03'
+specificationVersion: '0.19'
+apis:
+  - aid: ucsd:developer-portal
+    name: UC San Diego ITS Developer Guide
+    description: >-
+      The UC San Diego ITS developer guide provides the information needed to
+      understand and navigate campus systems and build applications that conform
+      to recommended architecture and guidelines. It is the entry point to the
+      campus developer community and Web API resources.
+    humanURL: https://developer.ucsd.edu/
+    baseURL: https://developer.ucsd.edu/
+    tags: [ Developer Portal, Documentation, Higher Education ]
+    properties:
+      - type: Documentation
+        url: https://developer.ucsd.edu/
+  - aid: ucsd:web-api-portal
+    name: UC San Diego Web API Portal
+    description: >-
+      The UC San Diego API Portal documents campus Web APIs and REST guidelines.
+      APIs are available to UCSD developers (staff, students, and faculty) who
+      have a Single Sign-On account; at this time the APIs are not open to
+      developers outside of UCSD.
+    humanURL: https://collab.ucsd.edu/api/api-documentation
+    tags: [ API Portal, REST, SSO, Gated, Documentation ]
+    properties:
+      - type: Documentation
+        url: https://collab.ucsd.edu/api/api-documentation
+      - type: Documentation
+        url: https://collab.ucsd.edu/api/api-documentation/rest-api-guidelines
+      - type: Authentication
+        url: https://ucsdcollab.atlassian.net/wiki/spaces/API/pages/22544505/FAQ
+  - aid: ucsd:tritonai
+    name: TritonAI Developer API
+    description: >-
+      TritonAI provides programmatic access to a curated selection of large
+      language models through a secure, centralized LLM gateway powered by
+      LiteLLM. It supports chat, reasoning, vision, image generation, OCR, and
+      coding. Access is restricted to approved UC San Diego faculty, staff,
+      researchers, and campus teams, authenticated with issued API keys.
+    humanURL: https://tritonai.ucsd.edu/developer-apis/index.html
+    baseURL: https://tritonai-api.ucsd.edu/
+    tags: [ AI, LLM, Gateway, Gated, Documentation ]
+    properties:
+      - type: Documentation
+        url: https://tritonai.ucsd.edu/developer-apis/index.html
+      - type: SignUp
+        url: https://tritonai.ucsd.edu/developer-apis/index.html
+  - aid: ucsd:library-digital-collections
+    name: UC San Diego Library Digital Collections
+    description: >-
+      The UC San Diego Library Digital Collections is a public search and
+      discovery interface for over 100,000 digital objects (documents,
+      photographs, audio, video, and datasets) managed in the locally developed
+      Digital Asset Management System (DAMS). It is registered as a research data
+      repository on re3data. No formally documented public REST/IIIF/OAI-PMH API
+      surface was confirmed during this review.
+    humanURL: https://library.ucsd.edu/dc/
+    tags: [ Library, Digital Collections, Research Data, Repository ]
+    properties:
+      - type: Documentation
+        url: https://library.ucsd.edu/dc/
+      - type: Documentation
+        url: https://www.re3data.org/repository/r3d100011577
+common:
+  - type: Website
+    url: https://www.ucsd.edu/
+  - type: DeveloperPortal
+    url: https://developer.ucsd.edu/
+  - type: GitHub
+    url: https://github.com/UCSD
+  - type: GitHub
+    url: https://github.com/ucsdlib
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/uc-san-diego/
+  - type: Plans
+    url: plans/ucsd-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/ucsd-rate-limits.yml
+  - type: FinOps
+    url: finops/ucsd-finops.yml
+  - type: Review
+    url: review.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
