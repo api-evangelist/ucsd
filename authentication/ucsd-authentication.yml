@@ -1,0 +1,13 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/ucsd-tritonai.yaml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: Issued TritonAI API key passed as a Bearer token.
+  sources:
+  - openapi/ucsd-tritonai.yaml

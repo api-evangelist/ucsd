@@ -108,6 +108,10 @@ apis:
       - type: Documentation
         url: https://www.re3data.org/repository/r3d100011577
 common:
+  - type: DomainSecurity
+    url: security/ucsd-domain-security.yml
+  - type: Authentication
+    url: authentication/ucsd-authentication.yml
   - type: Website
     url: https://www.ucsd.edu/
   - type: DeveloperPortal
