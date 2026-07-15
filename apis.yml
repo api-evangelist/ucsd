@@ -108,6 +108,8 @@ apis:
       - type: Documentation
         url: https://www.re3data.org/repository/r3d100011577
 common:
+  - type: AgenticAccess
+    url: agentic-access/ucsd-agentic-access.yml
   - type: DomainSecurity
     url: security/ucsd-domain-security.yml
   - type: Authentication
