@@ -1,0 +1,99 @@
+openapi: 3.0.3
+info:
+  title: TritonAI Developer API (LiteLLM Gateway) audio embeddings API
+  description: OpenAI-compatible LLM gateway operated by UC San Diego, powered by LiteLLM. This OpenAPI 3.0 description was faithfully derived from the live LiteLLM OpenAPI 3.1 document published at https://tritonai-api.ucsd.edu/openapi.json and scoped to the core, OpenAI-compatible inference surface that TritonAI documents (chat, completions, embeddings, model listing, image generation, and audio). Access is restricted to approved UC San Diego faculty, staff, researchers, and campus teams authenticated with issued API keys.
+  version: 1.0.0
+  contact:
+    name: TritonAI
+    email: tritonai@ucsd.edu
+    url: https://tritonai.ucsd.edu/developer-apis/index.html
+servers:
+- url: https://tritonai-api.ucsd.edu
+  description: TritonAI LLM gateway
+security:
+- bearerAuth: []
+tags:
+- name: embeddings
+  description: Embedding generation endpoints.
+paths:
+  /v1/embeddings:
+    post:
+      tags:
+      - embeddings
+      summary: Embeddings
+      operationId: embeddings
+      description: Create an embedding vector representing the input text.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmbeddingRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    HTTPValidationError:
+      type: object
+      title: HTTPValidationError
+      properties:
+        detail:
+          type: array
+          title: Detail
+          items:
+            $ref: '#/components/schemas/ValidationError'
+    ValidationError:
+      type: object
+      title: ValidationError
+      required:
+      - loc
+      - msg
+      - type
+      properties:
+        loc:
+          type: array
+          title: Location
+          items:
+            oneOf:
+            - type: string
+            - type: integer
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+    EmbeddingRequest:
+      type: object
+      required:
+      - model
+      properties:
+        model:
+          type: string
+          title: Model
+        input:
+          type: array
+          default: []
+          items:
+            type: string
+        timeout:
+          type: integer
+          default: 600
+      additionalProperties: true
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Issued TritonAI API key passed as a Bearer token.

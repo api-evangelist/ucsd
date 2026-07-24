@@ -1,0 +1,39 @@
+openapi: 3.0.3
+info:
+  title: TritonAI Developer API (LiteLLM Gateway) audio models API
+  description: OpenAI-compatible LLM gateway operated by UC San Diego, powered by LiteLLM. This OpenAPI 3.0 description was faithfully derived from the live LiteLLM OpenAPI 3.1 document published at https://tritonai-api.ucsd.edu/openapi.json and scoped to the core, OpenAI-compatible inference surface that TritonAI documents (chat, completions, embeddings, model listing, image generation, and audio). Access is restricted to approved UC San Diego faculty, staff, researchers, and campus teams authenticated with issued API keys.
+  version: 1.0.0
+  contact:
+    name: TritonAI
+    email: tritonai@ucsd.edu
+    url: https://tritonai.ucsd.edu/developer-apis/index.html
+servers:
+- url: https://tritonai-api.ucsd.edu
+  description: TritonAI LLM gateway
+security:
+- bearerAuth: []
+tags:
+- name: models
+  description: Model discovery endpoints.
+paths:
+  /v1/models:
+    get:
+      tags:
+      - models
+      summary: Model List
+      operationId: model_list
+      description: List the models available through the gateway.
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Issued TritonAI API key passed as a Bearer token.
