@@ -11,9 +11,22 @@ description: >-
   campus users, and maintains active open-source GitHub organizations and a
   publicly browsable Library Digital Collections repository.
 type: Index
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/ucsd.png
 url: https://raw.githubusercontent.com/api-evangelist/ucsd/refs/heads/main/apis.yml
 tags:
   - Education
@@ -26,87 +39,251 @@ created: '2026-06-03'
 modified: '2026-06-03'
 specificationVersion: '0.19'
 apis:
-  - aid: ucsd:developer-portal
-    name: UC San Diego ITS Developer Guide
-    description: >-
-      The UC San Diego ITS developer guide provides the information needed to
-      understand and navigate campus systems and build applications that conform
-      to recommended architecture and guidelines. It is the entry point to the
-      campus developer community and Web API resources.
-    humanURL: https://developer.ucsd.edu/
-    baseURL: https://developer.ucsd.edu/
-    tags: [ Developer Portal, Documentation, Higher Education ]
-    properties:
-      - type: Documentation
-        url: https://developer.ucsd.edu/
-  - aid: ucsd:web-api-portal
-    name: UC San Diego Web API Portal
-    description: >-
-      The UC San Diego API Portal documents campus Web APIs and REST guidelines.
-      APIs are available to UCSD developers (staff, students, and faculty) who
-      have a Single Sign-On account; at this time the APIs are not open to
-      developers outside of UCSD.
-    humanURL: https://collab.ucsd.edu/api/api-documentation
-    tags: [ API Portal, REST, SSO, Gated, Documentation ]
-    properties:
-      - type: Documentation
-        url: https://collab.ucsd.edu/api/api-documentation
-      - type: Documentation
-        url: https://collab.ucsd.edu/api/api-documentation/rest-api-guidelines
-      - type: Authentication
-        url: https://ucsdcollab.atlassian.net/wiki/spaces/API/pages/22544505/FAQ
-  - aid: ucsd:tritonai
-    name: TritonAI Developer API
-    description: >-
-      TritonAI provides programmatic access to a curated selection of large
-      language models through a secure, centralized LLM gateway powered by
-      LiteLLM. It supports chat, reasoning, vision, image generation, OCR, and
-      coding. Access is restricted to approved UC San Diego faculty, staff,
-      researchers, and campus teams, authenticated with issued API keys.
-    humanURL: https://tritonai.ucsd.edu/developer-apis/index.html
-    baseURL: https://tritonai-api.ucsd.edu/
-    tags: [ AI, LLM, Gateway, Gated, Documentation ]
-    properties:
-      - type: Documentation
-        url: https://tritonai.ucsd.edu/developer-apis/index.html
-      - type: Signup
-        url: https://tritonai.ucsd.edu/developer-apis/index.html
-      - type: OpenAPI
-        url: openapi/ucsd-tritonai.yaml
-      - type: x-json-schema
-        url: json-schema/ucsd-chat-completion-request-schema.json
-      - type: x-json-schema
-        url: json-schema/ucsd-embedding-request-schema.json
-      - type: x-json-structure
-        url: json-structure/ucsd-chat-completion-structure.json
-      - type: x-json-structure
-        url: json-structure/ucsd-embedding-structure.json
-      - type: x-example
-        url: examples/ucsd-chat-completion-example.json
-      - type: x-example
-        url: examples/ucsd-embeddings-example.json
-      - type: x-spectral-rules
-        url: rules/ucsd-rules.yml
-      - type: x-vocabulary
-        url: vocabulary/ucsd-vocabulary.yml
-      - type: x-json-ld
-        url: json-ld/ucsd-context.jsonld
-  - aid: ucsd:library-digital-collections
-    name: UC San Diego Library Digital Collections
-    description: >-
-      The UC San Diego Library Digital Collections is a public search and
-      discovery interface for over 100,000 digital objects (documents,
-      photographs, audio, video, and datasets) managed in the locally developed
-      Digital Asset Management System (DAMS). It is registered as a research data
-      repository on re3data. No formally documented public REST/IIIF/OAI-PMH API
-      surface was confirmed during this review.
-    humanURL: https://library.ucsd.edu/dc/
-    tags: [ Library, Digital Collections, Research Data, Repository ]
-    properties:
-      - type: Documentation
-        url: https://library.ucsd.edu/dc/
-      - type: Documentation
-        url: https://www.re3data.org/repository/r3d100011577
+- aid: ucsd:developer-portal
+  name: UC San Diego ITS Developer Guide
+  description: >-
+    The UC San Diego ITS developer guide provides the information needed to understand and navigate campus
+    systems and build applications that conform to recommended architecture and guidelines. It is the
+    entry point to the campus developer community and Web API resources.
+  humanURL: https://developer.ucsd.edu/
+  baseURL: https://developer.ucsd.edu/
+  tags:
+  - Developer Portal
+  - Documentation
+  - Higher Education
+  properties:
+  - type: Documentation
+    url: https://developer.ucsd.edu/
+- aid: ucsd:web-api-portal
+  name: UC San Diego Web API Portal
+  description: >-
+    The UC San Diego API Portal documents campus Web APIs and REST guidelines. APIs are available to UCSD
+    developers (staff, students, and faculty) who have a Single Sign-On account; at this time the APIs
+    are not open to developers outside of UCSD.
+  humanURL: https://collab.ucsd.edu/api/api-documentation
+  tags:
+  - API Portal
+  - REST
+  - SSO
+  - Gated
+  - Documentation
+  properties:
+  - type: Documentation
+    url: https://collab.ucsd.edu/api/api-documentation
+  - type: Documentation
+    url: https://collab.ucsd.edu/api/api-documentation/rest-api-guidelines
+  - type: Authentication
+    url: https://ucsdcollab.atlassian.net/wiki/spaces/API/pages/22544505/FAQ
+- aid: ucsd:library-digital-collections
+  name: UC San Diego Library Digital Collections
+  description: >-
+    The UC San Diego Library Digital Collections is a public search and discovery interface for over 100,000
+    digital objects (documents, photographs, audio, video, and datasets) managed in the locally developed
+    Digital Asset Management System (DAMS). It is registered as a research data repository on re3data.
+    No formally documented public REST/IIIF/OAI-PMH API surface was confirmed during this review.
+  humanURL: https://library.ucsd.edu/dc/
+  tags:
+  - Library
+  - Digital Collections
+  - Research Data
+  - Repository
+  properties:
+  - type: Documentation
+    url: https://library.ucsd.edu/dc/
+  - type: Documentation
+    url: https://www.re3data.org/repository/r3d100011577
+- aid: ucsd:ucsd-audio-api
+  name: University of California, San Diego audio API
+  description: Speech synthesis and transcription endpoints.
+  humanURL: https://developer.ucsd.edu/
+  baseURL: https://developer.ucsd.edu/
+  tags:
+  - audio
+  properties:
+  - type: OpenAPI
+    url: openapi/ucsd-audio-api-openapi.yml
+  - type: Documentation
+    url: https://tritonai.ucsd.edu/developer-apis/index.html
+  - type: Signup
+    url: https://tritonai.ucsd.edu/developer-apis/index.html
+  - type: x-json-schema
+    url: json-schema/ucsd-chat-completion-request-schema.json
+  - type: x-json-schema
+    url: json-schema/ucsd-embedding-request-schema.json
+  - type: x-json-structure
+    url: json-structure/ucsd-chat-completion-structure.json
+  - type: x-json-structure
+    url: json-structure/ucsd-embedding-structure.json
+  - type: x-example
+    url: examples/ucsd-chat-completion-example.json
+  - type: x-example
+    url: examples/ucsd-embeddings-example.json
+  - type: x-spectral-rules
+    url: rules/ucsd-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/ucsd-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/ucsd-context.jsonld
+- aid: ucsd:ucsd-chat-api
+  name: University of California, San Diego chat API
+  description: Chat completion endpoints.
+  humanURL: https://developer.ucsd.edu/
+  baseURL: https://developer.ucsd.edu/
+  tags:
+  - chat
+  properties:
+  - type: OpenAPI
+    url: openapi/ucsd-chat-api-openapi.yml
+  - type: Documentation
+    url: https://tritonai.ucsd.edu/developer-apis/index.html
+  - type: Signup
+    url: https://tritonai.ucsd.edu/developer-apis/index.html
+  - type: x-json-schema
+    url: json-schema/ucsd-chat-completion-request-schema.json
+  - type: x-json-schema
+    url: json-schema/ucsd-embedding-request-schema.json
+  - type: x-json-structure
+    url: json-structure/ucsd-chat-completion-structure.json
+  - type: x-json-structure
+    url: json-structure/ucsd-embedding-structure.json
+  - type: x-example
+    url: examples/ucsd-chat-completion-example.json
+  - type: x-example
+    url: examples/ucsd-embeddings-example.json
+  - type: x-spectral-rules
+    url: rules/ucsd-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/ucsd-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/ucsd-context.jsonld
+- aid: ucsd:ucsd-completions-api
+  name: University of California, San Diego completions API
+  description: Text completion endpoints.
+  humanURL: https://developer.ucsd.edu/
+  baseURL: https://developer.ucsd.edu/
+  tags:
+  - completions
+  properties:
+  - type: OpenAPI
+    url: openapi/ucsd-completions-api-openapi.yml
+  - type: Documentation
+    url: https://tritonai.ucsd.edu/developer-apis/index.html
+  - type: Signup
+    url: https://tritonai.ucsd.edu/developer-apis/index.html
+  - type: x-json-schema
+    url: json-schema/ucsd-chat-completion-request-schema.json
+  - type: x-json-schema
+    url: json-schema/ucsd-embedding-request-schema.json
+  - type: x-json-structure
+    url: json-structure/ucsd-chat-completion-structure.json
+  - type: x-json-structure
+    url: json-structure/ucsd-embedding-structure.json
+  - type: x-example
+    url: examples/ucsd-chat-completion-example.json
+  - type: x-example
+    url: examples/ucsd-embeddings-example.json
+  - type: x-spectral-rules
+    url: rules/ucsd-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/ucsd-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/ucsd-context.jsonld
+- aid: ucsd:ucsd-embeddings-api
+  name: University of California, San Diego embeddings API
+  description: Embedding generation endpoints.
+  humanURL: https://developer.ucsd.edu/
+  baseURL: https://developer.ucsd.edu/
+  tags:
+  - embeddings
+  properties:
+  - type: OpenAPI
+    url: openapi/ucsd-embeddings-api-openapi.yml
+  - type: Documentation
+    url: https://tritonai.ucsd.edu/developer-apis/index.html
+  - type: Signup
+    url: https://tritonai.ucsd.edu/developer-apis/index.html
+  - type: x-json-schema
+    url: json-schema/ucsd-chat-completion-request-schema.json
+  - type: x-json-schema
+    url: json-schema/ucsd-embedding-request-schema.json
+  - type: x-json-structure
+    url: json-structure/ucsd-chat-completion-structure.json
+  - type: x-json-structure
+    url: json-structure/ucsd-embedding-structure.json
+  - type: x-example
+    url: examples/ucsd-chat-completion-example.json
+  - type: x-example
+    url: examples/ucsd-embeddings-example.json
+  - type: x-spectral-rules
+    url: rules/ucsd-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/ucsd-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/ucsd-context.jsonld
+- aid: ucsd:ucsd-images-api
+  name: University of California, San Diego images API
+  description: Image generation endpoints.
+  humanURL: https://developer.ucsd.edu/
+  baseURL: https://developer.ucsd.edu/
+  tags:
+  - images
+  properties:
+  - type: OpenAPI
+    url: openapi/ucsd-images-api-openapi.yml
+  - type: Documentation
+    url: https://tritonai.ucsd.edu/developer-apis/index.html
+  - type: Signup
+    url: https://tritonai.ucsd.edu/developer-apis/index.html
+  - type: x-json-schema
+    url: json-schema/ucsd-chat-completion-request-schema.json
+  - type: x-json-schema
+    url: json-schema/ucsd-embedding-request-schema.json
+  - type: x-json-structure
+    url: json-structure/ucsd-chat-completion-structure.json
+  - type: x-json-structure
+    url: json-structure/ucsd-embedding-structure.json
+  - type: x-example
+    url: examples/ucsd-chat-completion-example.json
+  - type: x-example
+    url: examples/ucsd-embeddings-example.json
+  - type: x-spectral-rules
+    url: rules/ucsd-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/ucsd-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/ucsd-context.jsonld
+- aid: ucsd:ucsd-models-api
+  name: University of California, San Diego models API
+  description: Model discovery endpoints.
+  humanURL: https://developer.ucsd.edu/
+  baseURL: https://developer.ucsd.edu/
+  tags:
+  - models
+  properties:
+  - type: OpenAPI
+    url: openapi/ucsd-models-api-openapi.yml
+  - type: Documentation
+    url: https://tritonai.ucsd.edu/developer-apis/index.html
+  - type: Signup
+    url: https://tritonai.ucsd.edu/developer-apis/index.html
+  - type: x-json-schema
+    url: json-schema/ucsd-chat-completion-request-schema.json
+  - type: x-json-schema
+    url: json-schema/ucsd-embedding-request-schema.json
+  - type: x-json-structure
+    url: json-structure/ucsd-chat-completion-structure.json
+  - type: x-json-structure
+    url: json-structure/ucsd-embedding-structure.json
+  - type: x-example
+    url: examples/ucsd-chat-completion-example.json
+  - type: x-example
+    url: examples/ucsd-embeddings-example.json
+  - type: x-spectral-rules
+    url: rules/ucsd-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/ucsd-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/ucsd-context.jsonld
 common:
   - type: AgenticAccess
     url: agentic-access/ucsd-agentic-access.yml
