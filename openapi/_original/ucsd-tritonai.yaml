@@ -1,0 +1,331 @@
+openapi: 3.0.3
+info:
+  title: TritonAI Developer API (LiteLLM Gateway)
+  description: >-
+    OpenAI-compatible LLM gateway operated by UC San Diego, powered by LiteLLM.
+    This OpenAPI 3.0 description was faithfully derived from the live LiteLLM
+    OpenAPI 3.1 document published at https://tritonai-api.ucsd.edu/openapi.json
+    and scoped to the core, OpenAI-compatible inference surface that TritonAI
+    documents (chat, completions, embeddings, model listing, image generation,
+    and audio). Access is restricted to approved UC San Diego faculty, staff,
+    researchers, and campus teams authenticated with issued API keys.
+  version: 1.0.0
+  contact:
+    name: TritonAI
+    email: tritonai@ucsd.edu
+    url: https://tritonai.ucsd.edu/developer-apis/index.html
+servers:
+  - url: https://tritonai-api.ucsd.edu
+    description: TritonAI LLM gateway
+security:
+  - bearerAuth: []
+tags:
+  - name: chat
+    description: Chat completion endpoints.
+  - name: completions
+    description: Text completion endpoints.
+  - name: embeddings
+    description: Embedding generation endpoints.
+  - name: models
+    description: Model discovery endpoints.
+  - name: images
+    description: Image generation endpoints.
+  - name: audio
+    description: Speech synthesis and transcription endpoints.
+paths:
+  /v1/chat/completions:
+    post:
+      tags: [chat]
+      summary: Chat Completion
+      operationId: chat_completion
+      description: >-
+        Create a model response for the given chat conversation. Follows the
+        OpenAI chat completions request/response contract.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatCompletionRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/completions:
+    post:
+      tags: [completions]
+      summary: Completion
+      operationId: completion
+      description: Create a text completion for the provided prompt and model.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompletionRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/embeddings:
+    post:
+      tags: [embeddings]
+      summary: Embeddings
+      operationId: embeddings
+      description: Create an embedding vector representing the input text.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmbeddingRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/models:
+    get:
+      tags: [models]
+      summary: Model List
+      operationId: model_list
+      description: List the models available through the gateway.
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /v1/images/generations:
+    post:
+      tags: [images]
+      summary: Image Generation
+      operationId: image_generation
+      description: Generate one or more images from a text prompt.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [model, prompt]
+              properties:
+                model:
+                  type: string
+                prompt:
+                  type: string
+                n:
+                  type: integer
+                size:
+                  type: string
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /audio/speech:
+    post:
+      tags: [audio]
+      summary: Audio Speech
+      operationId: audio_speech
+      description: Generate audio (text-to-speech) from input text.
+      responses:
+        '200':
+          description: Successful Response
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /audio/transcriptions:
+    post:
+      tags: [audio]
+      summary: Audio Transcriptions
+      operationId: audio_transcriptions
+      description: Transcribe audio into the input language (speech-to-text).
+      responses:
+        '200':
+          description: Successful Response
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Issued TritonAI API key passed as a Bearer token.
+  schemas:
+    ChatCompletionRequest:
+      type: object
+      required: [model, messages]
+      properties:
+        model:
+          type: string
+          title: Model
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChatCompletionMessage'
+        temperature:
+          type: number
+        top_p:
+          type: number
+        n:
+          type: integer
+        stream:
+          type: boolean
+        max_tokens:
+          type: integer
+      additionalProperties: true
+    ChatCompletionMessage:
+      type: object
+      required: [role]
+      properties:
+        role:
+          type: string
+          enum: [system, user, assistant, tool, function, developer]
+        content:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                $ref: '#/components/schemas/ChatCompletionContentObject'
+        name:
+          type: string
+      additionalProperties: true
+    ChatCompletionContentObject:
+      type: object
+      required: [type]
+      properties:
+        type:
+          type: string
+          enum: [text, image_url, input_audio]
+        text:
+          type: string
+        image_url:
+          oneOf:
+            - type: string
+            - type: object
+              properties:
+                url:
+                  type: string
+              additionalProperties: true
+      additionalProperties: true
+    CompletionRequest:
+      type: object
+      required: [model, prompt]
+      properties:
+        model:
+          type: string
+          title: Model
+        prompt:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+        max_tokens:
+          type: integer
+        temperature:
+          type: number
+        stream:
+          type: boolean
+      additionalProperties: true
+    EmbeddingRequest:
+      type: object
+      required: [model]
+      properties:
+        model:
+          type: string
+          title: Model
+        input:
+          type: array
+          default: []
+          items:
+            type: string
+        timeout:
+          type: integer
+          default: 600
+      additionalProperties: true
+    HTTPValidationError:
+      type: object
+      title: HTTPValidationError
+      properties:
+        detail:
+          type: array
+          title: Detail
+          items:
+            $ref: '#/components/schemas/ValidationError'
+    ValidationError:
+      type: object
+      title: ValidationError
+      required: [loc, msg, type]
+      properties:
+        loc:
+          type: array
+          title: Location
+          items:
+            oneOf:
+              - type: string
+              - type: integer
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+    ErrorResponse:
+      type: object
+      title: ErrorResponse
+      required: [detail]
+      properties:
+        detail:
+          type: object
+          title: Detail
+          additionalProperties: true

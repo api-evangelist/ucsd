@@ -1,0 +1,24 @@
+{
+  "provider": "ucsd",
+  "sources": [
+    "ucsd-audio-api-openapi.yml",
+    "ucsd-chat-api-openapi.yml",
+    "ucsd-completions-api-openapi.yml",
+    "ucsd-embeddings-api-openapi.yml",
+    "ucsd-images-api-openapi.yml",
+    "ucsd-models-api-openapi.yml"
+  ],
+  "outputs": [
+    "ucsd-audio-api-openapi.yml",
+    "ucsd-chat-api-openapi.yml",
+    "ucsd-completions-api-openapi.yml",
+    "ucsd-embeddings-api-openapi.yml",
+    "ucsd-images-api-openapi.yml",
+    "ucsd-models-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
