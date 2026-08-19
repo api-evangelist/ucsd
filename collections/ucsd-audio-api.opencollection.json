@@ -1,0 +1,46 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TritonAI Developer API (LiteLLM Gateway) audio API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "audio",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Audio Speech",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://tritonai-api.ucsd.edu/audio/speech"
+          },
+          "docs": "Generate audio (text-to-speech) from input text."
+        },
+        {
+          "info": {
+            "name": "Audio Transcriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://tritonai-api.ucsd.edu/audio/transcriptions"
+          },
+          "docs": "Transcribe audio into the input language (speech-to-text)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

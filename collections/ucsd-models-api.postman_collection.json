@@ -1,0 +1,121 @@
+{
+  "item": [
+    {
+      "id": "58c8668a-020d-4350-9bb8-f5c0cec38f8f",
+      "name": "models",
+      "description": {
+        "content": "Model discovery endpoints.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c2c54274-a690-48c7-a65e-caaa90253c04",
+          "name": "Model List",
+          "request": {
+            "name": "Model List",
+            "description": {
+              "content": "List the models available through the gateway.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "models"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "88c7105e-e7ed-4c03-a176-165de9d7f4a9",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "models"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": \"string\",\n  \"key_1\": false,\n  \"key_2\": false,\n  \"key_3\": \"string\",\n  \"key_4\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://tritonai-api.ucsd.edu",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b8e0c145-5e2f-43cb-9470-fdc33a06d4c0",
+    "name": "TritonAI Developer API (LiteLLM Gateway) audio models API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAI-compatible LLM gateway operated by UC San Diego, powered by LiteLLM. This OpenAPI 3.0 description was faithfully derived from the live LiteLLM OpenAPI 3.1 document published at https://tritonai-api.ucsd.edu/openapi.json and scoped to the core, OpenAI-compatible inference surface that TritonAI documents (chat, completions, embeddings, model listing, image generation, and audio). Access is restricted to approved UC San Diego faculty, staff, researchers, and campus teams authenticated with issued API keys.\n\nContact Support:\n Name: TritonAI\n Email: tritonai@ucsd.edu",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TritonAI Developer API (LiteLLM Gateway) audio chat API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "chat",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chat Completion",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://tritonai-api.ucsd.edu/v1/chat/completions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a model response for the given chat conversation. Follows the OpenAI chat completions request/response contract."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

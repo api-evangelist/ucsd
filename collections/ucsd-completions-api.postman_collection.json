@@ -1,0 +1,194 @@
+{
+  "item": [
+    {
+      "id": "b037d919-00e2-411a-966f-44056d3c474c",
+      "name": "completions",
+      "description": {
+        "content": "Text completion endpoints.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "071ae319-9464-497b-b9d5-62524433cca0",
+          "name": "Completion",
+          "request": {
+            "name": "Completion",
+            "description": {
+              "content": "Create a text completion for the provided prompt and model.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "completions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model\": \"<string>\",\n  \"prompt\": \"<string>\",\n  \"max_tokens\": \"<integer>\",\n  \"temperature\": \"<number>\",\n  \"stream\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "19e9a852-2582-4ba2-a0c9-f0393334d9f0",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "completions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"<string>\",\n  \"prompt\": \"<string>\",\n  \"max_tokens\": \"<integer>\",\n  \"temperature\": \"<number>\",\n  \"stream\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": \"string\",\n  \"key_1\": \"string\",\n  \"key_2\": 7576.199779976687\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f48b4c56-c4a0-4022-bd72-b41b14ac02e9",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "completions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"<string>\",\n  \"prompt\": \"<string>\",\n  \"max_tokens\": \"<integer>\",\n  \"temperature\": \"<number>\",\n  \"stream\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://tritonai-api.ucsd.edu",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f0156f16-bbfd-4d34-9fb3-f210f25dd278",
+    "name": "TritonAI Developer API (LiteLLM Gateway) audio completions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAI-compatible LLM gateway operated by UC San Diego, powered by LiteLLM. This OpenAPI 3.0 description was faithfully derived from the live LiteLLM OpenAPI 3.1 document published at https://tritonai-api.ucsd.edu/openapi.json and scoped to the core, OpenAI-compatible inference surface that TritonAI documents (chat, completions, embeddings, model listing, image generation, and audio). Access is restricted to approved UC San Diego faculty, staff, researchers, and campus teams authenticated with issued API keys.\n\nContact Support:\n Name: TritonAI\n Email: tritonai@ucsd.edu",
+      "type": "text/plain"
+    }
+  }
+}

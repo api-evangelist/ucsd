@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TritonAI Developer API (LiteLLM Gateway) audio models API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "models",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Model List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://tritonai-api.ucsd.edu/v1/models"
+          },
+          "docs": "List the models available through the gateway."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

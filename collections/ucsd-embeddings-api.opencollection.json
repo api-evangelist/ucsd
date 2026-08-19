@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TritonAI Developer API (LiteLLM Gateway) audio embeddings API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "embeddings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Embeddings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://tritonai-api.ucsd.edu/v1/embeddings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an embedding vector representing the input text."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
