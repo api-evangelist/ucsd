@@ -125,6 +125,10 @@ apis:
   humanURL: https://tritonai.ucsd.edu/developer-apis/index.html
   baseURL: https://tritonai-api.ucsd.edu
   tags:
+  - Chat
+  - Artificial Intelligence
+  - LLM Gateway
+  tags_raw:
   - chat
   - Artificial Intelligence
   - LLM Gateway
@@ -160,6 +164,10 @@ apis:
   humanURL: https://tritonai.ucsd.edu/developer-apis/index.html
   baseURL: https://tritonai-api.ucsd.edu
   tags:
+  - Completions
+  - Artificial Intelligence
+  - LLM Gateway
+  tags_raw:
   - completions
   - Artificial Intelligence
   - LLM Gateway
@@ -183,6 +191,10 @@ apis:
   humanURL: https://tritonai.ucsd.edu/developer-apis/index.html
   baseURL: https://tritonai-api.ucsd.edu
   tags:
+  - Embeddings
+  - Artificial Intelligence
+  - LLM Gateway
+  tags_raw:
   - embeddings
   - Artificial Intelligence
   - LLM Gateway
@@ -212,6 +224,10 @@ apis:
   humanURL: https://tritonai.ucsd.edu/developer-apis/index.html
   baseURL: https://tritonai-api.ucsd.edu
   tags:
+  - Models
+  - Artificial Intelligence
+  - LLM Gateway
+  tags_raw:
   - models
   - Artificial Intelligence
   - LLM Gateway
@@ -235,6 +251,10 @@ apis:
   humanURL: https://tritonai.ucsd.edu/developer-apis/index.html
   baseURL: https://tritonai-api.ucsd.edu
   tags:
+  - Image
+  - Artificial Intelligence
+  - LLM Gateway
+  tags_raw:
   - images
   - Artificial Intelligence
   - LLM Gateway
@@ -258,6 +278,10 @@ apis:
   humanURL: https://tritonai.ucsd.edu/developer-apis/index.html
   baseURL: https://tritonai-api.ucsd.edu
   tags:
+  - Audio
+  - Artificial Intelligence
+  - LLM Gateway
+  tags_raw:
   - audio
   - Artificial Intelligence
   - LLM Gateway
@@ -286,6 +310,11 @@ apis:
   humanURL: https://tritonai.ucsd.edu/developer-apis/index.html
   baseURL: https://tritonai-api.ucsd.edu
   tags:
+  - SCIM
+  - Identity
+  - Provisioning
+  - Standards
+  tags_raw:
   - scim
   - Identity
   - Provisioning
