@@ -1,0 +1,58 @@
+slug: ucsd
+provider: University of California, San Diego
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Education
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: scim
+  spec_file: ucsd-scim-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: '''SCIM 2.0 (RFC 7643 / RFC 7644) user and group provisioning surface''; Create Group, Patch
+    Group, SCIMUser, SCIMGroup'
+  reason: User and group provisioning via SCIM is identity lifecycle and access provisioning — Identity
+    & Access Management. Vendor context confirms it is an administrative provisioning surface, not part
+    of the inference contract.
+- tag: objects
+  spec_file: ucsd-objects-api-openapi.yml
+  capability_id: BC-4790.40
+  capability_id_l1: BC-4790
+  capability_name: Library & Information Resource Operations
+  confidence: 0.72
+  evidence: GET /dc/object/{id}.json  Retrieve a digital object; 'read-only JSON search-and-retrieval
+    interface over the UC San Diego Library Digital Collections (DC), the Library's locally developed
+    Digital Asset Management System (DAMS)'
+  reason: Retrieval of digital objects and assembled collections from the university Library's digital
+    collections repository realises Library & Information Resource Operations (collection stewardship
+    and access to information resources). Not a generic file API — the context explicitly names the Library's
+    collections and DOI minting.
+- tag: chat
+  spec_file: ucsd-chat-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.7
+  evidence: POST /v1/chat/completions "Chat Completion"; "OpenAI-compatible LLM gateway operated by UC
+    San Diego"
+  reason: LLM chat inference served through a campus-operated gateway realises the AI/ML platform capability
+    under Information & Data Management rather than any education-specific capability.
+- tag: completions
+  spec_file: ucsd-completions-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.7
+  evidence: POST /v1/completions "Completion"; "scoped to the core, OpenAI-compatible inference surface"
+  reason: Text-completion inference on the institution's LLM gateway is AI service delivery; maps to Artificial
+    Intelligence Management, not to teaching or research capabilities.

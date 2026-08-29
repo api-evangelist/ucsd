@@ -475,6 +475,9 @@ apis:
   - type: x-errors
     url: errors/ucsd-errors.yml
 common:
+  - type: CapabilityMap
+    url: capabilities/ucsd-capability-edges.yml
+    name: University of California, San Diego Business Capability Map
   - type: Website
     url: https://www.ucsd.edu/
   - type: Documentation
