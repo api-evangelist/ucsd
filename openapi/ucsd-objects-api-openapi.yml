@@ -1,0 +1,141 @@
+openapi: 3.2.0
+info:
+  title: UC San Diego Library Digital Collections JSON Objects API
+  description: 'Public, read-only JSON search-and-retrieval interface over the UC San Diego Library Digital Collections (DC), the Library''s locally developed Digital Asset Management System (DAMS). The stack is Fedora-backed and Blacklight/Solr-fronted, and the JSON representations are the same documents that back the public HTML interface — request `.json` on a search or object path and the Solr response is returned directly.
+
+    UC San Diego operates this service itself: `library.ucsd.edu` resolves inside UC San Diego address space (132.239.119.5) and is served from the Library''s own Apache origin, not from a repository vendor''s platform. It is registered on re3data as an institutional data provider (r3d100011577) and mints DOIs under the DataCite repository account CDL.UCSD (prefix 10.6075).
+
+    UC San Diego does NOT publish an OpenAPI description for this interface. This document was written by API Evangelist from live probes of the endpoints and their responses on 2026-08-19; it is a description of observed behaviour, not a contract the institution has committed to.
+
+    Note for automated clients: `library.ucsd.edu` fronts browser-like User-Agent strings with an Anubis proof-of-work bot challenge that returns HTTP 200 with a challenge body. Plain non-browser User-Agents (curl, python-requests) are served normally.'
+  version: 2026-08-19
+  contact:
+    name: UC San Diego Library — Research Data Curation
+    email: research-data-curation@ucsd.edu
+    url: https://library.ucsd.edu/dc/p/about
+  license:
+    name: Rights vary per object; see the Digital Collections rights statements
+    url: https://library.ucsd.edu/dc/p/collection_policies
+servers:
+- url: https://library.ucsd.edu
+  description: UC San Diego Library Digital Collections (production)
+tags:
+- name: objects
+  description: Retrieval of a single digital object or assembled collection record.
+paths:
+  /dc/object/{id}.json:
+    get:
+      tags:
+      - objects
+      summary: Retrieve a digital object
+      operationId: getDigitalObject
+      description: Returns the indexed Solr document for a single digital object, keyed by its ARK name segment (for example `bb38236995`). The document carries descriptive metadata, rights and permission statements, component/file maps, collection membership and object profile datastreams.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ARK name segment of the object.
+        schema:
+          type: string
+          pattern: ^[a-z0-9]+$
+        example: bb38236995
+      responses:
+        '200':
+          description: Solr document for the object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DigitalObject'
+        '404':
+          description: No such object, or the object is not publicly discoverable.
+          content:
+            text/html:
+              schema:
+                type: string
+  /dc/collection/{id}.json:
+    get:
+      tags:
+      - objects
+      summary: Retrieve an assembled collection
+      operationId: getCollection
+      description: Returns the indexed Solr document for an assembled collection (`DamsAssembledCollection`), keyed by its ARK name segment.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ARK name segment of the collection.
+        schema:
+          type: string
+          pattern: ^[a-z0-9]+$
+        example: bb88559640
+      responses:
+        '200':
+          description: Solr document for the collection.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DigitalObject'
+        '404':
+          description: No such collection, or it is not publicly discoverable.
+          content:
+            text/html:
+              schema:
+                type: string
+components:
+  schemas:
+    DigitalObject:
+      type: object
+      description: Solr document for a digital object. Field names follow the Samvera/Hydra dynamic field suffix convention (_tesim text stored indexed multivalued, _ssi string stored indexed, _sim string indexed multivalued, _dtsi date stored indexed).
+      properties:
+        id:
+          type: string
+          description: ARK name segment, also the object's public identifier.
+          example: bb38236995
+        active_fedora_model_ssi:
+          type: string
+          description: Fedora model of the record.
+          example: DamsObject
+        object_state_ssi:
+          type: string
+          example: A
+        title_tesim:
+          type: array
+          items:
+            type: string
+        date_tesim:
+          type: array
+          items:
+            type: string
+        unit_code_tesim:
+          type: array
+          items:
+            type: string
+        collection_name_tesim:
+          type: array
+          items:
+            type: string
+        resource_type_tesim:
+          type: array
+          items:
+            type: string
+        rightsHolder_tesim:
+          type: array
+          items:
+            type: string
+        otherRights_tesim:
+          type: array
+          description: Serialized rights/permission statements including basis and permission type.
+          items:
+            type: string
+        discover_access_group_ssim:
+          type: array
+          description: Access groups permitted to discover the object; `public` for open material.
+          items:
+            type: string
+        system_create_dtsi:
+          type: string
+          format: date-time
+        system_modified_dtsi:
+          type: string
+          format: date-time
+      additionalProperties: true

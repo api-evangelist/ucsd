@@ -1,0 +1,61 @@
+{
+  "x-provenance": {
+    "generated": "2026-08-19",
+    "method": "probed",
+    "source": "https://library.ucsd.edu/dc/search.json?q=ocean&rows=2",
+    "note": "Real response captured live on 2026-08-19 and trimmed to a representative document; field values are unaltered."
+  },
+  "responseHeader": {
+    "status": 0,
+    "QTime": 7
+  },
+  "response": {
+    "numFound": 12939,
+    "start": 0,
+    "numFoundExact": true,
+    "docs": [
+      {
+        "system_create_dtsi": "2014-10-22T04:56:50Z",
+        "system_modified_dtsi": "2026-03-20T01:19:31Z",
+        "object_state_ssi": "A",
+        "active_fedora_model_ssi": "DamsObject",
+        "id": "bb38236995",
+        "discover_access_group_ssim": [
+          "public",
+          "dams-curator",
+          "dams-editor",
+          "dams-manager-admin"
+        ],
+        "title_tesim": [
+          "Ocean surf along Ocean Beach coast"
+        ],
+        "date_tesim": [
+          "ca. 1910",
+          "1910",
+          "1910",
+          "creation",
+          "w3cdtf"
+        ],
+        "geographic_tesim": [
+          "Ocean Beach (San Diego, California)"
+        ],
+        "topic_tesim": [
+          "Oceans",
+          "Waterfronts"
+        ],
+        "unit_code_tesim": [
+          "dlp"
+        ],
+        "collection_name_tesim": [
+          "San Diego History Center Photographs"
+        ],
+        "rightsHolder_tesim": [
+          "San Diego History Center"
+        ],
+        "resource_type_tesim": [
+          "image"
+        ]
+      }
+    ]
+  }
+}

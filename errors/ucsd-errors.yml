@@ -1,0 +1,79 @@
+generated: '2026-08-19'
+method: derived
+source: >-
+  openapi/ucsd-chat-api-openapi.yml, openapi/ucsd-scim-api-openapi.yml,
+  openapi/ucsd-library-digital-collections-openapi.yml, plus live probes of
+  https://api.ucsd.edu/api/am/devportal/v2/apis and https://library.ucsd.edu/
+provider: University of California, San Diego
+providerId: ucsd
+description: >-
+  Error responses observable on UC San Diego's institution-operated API surfaces. UC San Diego
+  publishes no error reference of its own; every entry below is derived from a contract in this
+  repo or from a probe that actually returned the status.
+surfaces:
+  - name: TritonAI Developer API (LiteLLM Gateway)
+    host: tritonai-api.ucsd.edu
+    x-operator: institution
+    errors:
+      - status: 422
+        name: Validation Error
+        schema: HTTPValidationError
+        media_type: application/json
+        description: >-
+          FastAPI/Pydantic validation failure. Body carries `detail[]`, each item with `loc`,
+          `msg` and `type`. This is the only error response the gateway's OpenAPI declares —
+          401, 403, 429 and 5xx are returned in practice but are undeclared.
+        source: openapi/ucsd-chat-api-openapi.yml
+      - status: 401
+        name: Unauthorized
+        description: Missing or invalid Bearer credential. Undeclared in the contract.
+        source: probed
+        declared: false
+  - name: UC San Diego API Gateway (WSO2 API Manager 4.1.0)
+    host: api.ucsd.edu
+    x-operator: institution
+    errors:
+      - status: 401
+        name: Unauthenticated request
+        media_type: application/json
+        description: >-
+          Returned by every developer-portal catalogue call because the gateway runs with
+          IsAnonymousModeEnabled=false.
+        example: '{"code":401,"message":"","description":"Unauthenticated request","moreInfo":"","error":[]}'
+        source: probed
+        evidence:
+          url: https://api.ucsd.edu/api/am/devportal/v2/apis
+          status: 401
+      - status: 302
+        name: Redirect to carbon admin login
+        description: >-
+          Legacy /store and /api/am/store/* paths redirect to
+          https://api.ucsd.edu/carbon/admin/login.jsp rather than returning 404 or 410. A client
+          following redirects receives HTTP 200 with a WSO2 login page, so status code alone is
+          not a liveness signal on this host.
+        source: probed
+  - name: UC San Diego Library Digital Collections JSON API
+    host: library.ucsd.edu
+    x-operator: institution
+    errors:
+      - status: 404
+        name: Not Found
+        media_type: text/html
+        description: >-
+          Unknown /dc paths return a 1,776-byte branded HTML 404, not JSON. A JSON client must
+          check the content type, not just the body.
+        source: probed
+        evidence:
+          url: https://library.ucsd.edu/dc/oai?verb=Identify
+          status: 404
+      - status: 200
+        name: Anubis bot challenge (soft failure)
+        media_type: text/html
+        description: >-
+          library.ucsd.edu fronts browser-like User-Agent strings with an Anubis proof-of-work
+          interstitial that returns HTTP 200 and a 7,537-byte challenge body titled "Making sure
+          you're not a bot!". Every path answers identically, so a naive crawler reads the whole
+          host as live-and-uniform. Plain non-browser User-Agents are served the real response.
+          This is the one failure mode most likely to mis-grade this institution.
+        source: probed
+        declared: false

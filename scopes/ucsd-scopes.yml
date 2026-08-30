@@ -1,0 +1,70 @@
+generated: '2026-08-19'
+method: probed
+source: >-
+  https://api.ucsd.edu/api/am/devportal/v2/settings (200, anonymous) and
+  https://tritonai-api.ucsd.edu/openapi.json (200)
+provider: University of California, San Diego
+providerId: ucsd
+description: >-
+  Authorization scopes observable on UC San Diego's institution-operated API surfaces. Both
+  surfaces are credential-gated; the scope names below were read from endpoints that answer
+  anonymously, not from published developer documentation, because UC San Diego does not
+  publish a scope reference outside its Single Sign-On boundary.
+surfaces:
+  - name: UC San Diego API Gateway (WSO2 API Manager 4.1.0)
+    host: api.ucsd.edu
+    x-operator: institution
+    model: OAuth 2.0 / OpenID Connect scopes issued by the gateway's own key manager
+    evidence:
+      url: https://api.ucsd.edu/api/am/devportal/v2/settings
+      status: 200
+    notes: >-
+      The gateway reports IsAnonymousModeEnabled=false, monetizationEnabled=false and
+      identityProvider.external=false, which is why the API catalogue itself
+      (/api/am/devportal/v2/apis) answers 401 to an unauthenticated client. The scope names are
+      WSO2 product scopes governing developer-portal actions, not per-API business scopes; the
+      per-API scopes are behind the same 401.
+    scopes:
+      - name: apim:admin
+        description: Administrative access to the developer portal.
+      - name: apim:api_key
+        description: Issue and manage API keys for a subscribed application.
+      - name: apim:app_import_export
+        description: Import and export developer-portal applications.
+      - name: apim:app_manage
+        description: Create, update and delete developer-portal applications.
+      - name: apim:store_settings
+        description: Read developer-portal settings.
+      - name: apim:sub_alert_manage
+        description: Manage subscriber alert configuration.
+      - name: apim:sub_manage
+        description: Manage subscriptions to published APIs.
+      - name: apim:subscribe
+        description: Subscribe an application to a published API.
+      - name: openid
+        description: OpenID Connect identity scope.
+  - name: TritonAI Developer API (LiteLLM Gateway)
+    host: tritonai-api.ucsd.edu
+    x-operator: institution
+    model: Bearer token — issued TritonAI API key
+    evidence:
+      url: https://tritonai-api.ucsd.edu/openapi.json
+      status: 200
+    notes: >-
+      The gateway declares no OAuth scope vocabulary. Authorization is a single opaque
+      credential; entitlement is expressed server-side through LiteLLM key, team, budget and
+      access-group objects rather than through scopes on the wire. Access is granted to approved
+      UC San Diego faculty, staff, researchers and campus teams.
+    scopes: []
+  - name: UC San Diego Library Digital Collections JSON API
+    host: library.ucsd.edu
+    x-operator: institution
+    model: none — anonymous read
+    evidence:
+      url: https://library.ucsd.edu/dc/search.json?q=ocean
+      status: 200
+    notes: >-
+      No authorization layer. Entitlement is enforced server-side by a fixed Solr filter query
+      (discover_access_group_ssim:public OR discover_access_group_ssim:unknown), so restricted
+      and embargoed material is never returned to an anonymous client.
+    scopes: []

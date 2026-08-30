@@ -1,0 +1,130 @@
+generated: '2026-08-19'
+method: probed
+source: >-
+  Live probes of UC San Diego surfaces on 2026-08-19 — https://tritonai-api.ucsd.edu/openapi.json,
+  the InCommon MDQ metadata service, the DataCite REST API, and https://library.ucsd.edu/dc/.
+provider: University of California, San Diego
+providerId: ucsd
+regime: education
+description: >-
+  Conformance of UC San Diego's institution-operated surfaces against the Kin Score `education`
+  regulatory regime's named domain standards. REWARD-ONLY: a standard appears here only when a
+  live probe returned evidence at a named location. Standards probed and NOT found are listed
+  under `absent` so the gap is a recorded finding rather than a silence.
+standards:
+  - id: scim
+    name: SCIM 2.0 (RFC 7643 / RFC 7644)
+    status: conformant
+    operator: institution
+    evidence:
+      - what: 18 SCIM 2.0 operations across 10 paths, rooted at /scim/v2
+        url: https://tritonai-api.ucsd.edu/openapi.json
+        status: 200
+        location: paths where operation.tags contains "scim"
+        detail: >-
+          /scim/v2, /scim/v2/Users, /scim/v2/Users/{user_id}, /scim/v2/Groups,
+          /scim/v2/Groups/{group_id}, /scim/v2/Schemas, /scim/v2/Schemas/{schema_id},
+          /scim/v2/ResourceTypes, /scim/v2/ResourceTypes/{resource_type_id},
+          /scim/v2/ServiceProviderConfig
+      - what: contract saved into this repo
+        url: openapi/ucsd-scim-api-openapi.yml
+    caveat: >-
+      The deployment is UC San Diego's — tritonai-api.ucsd.edu resolves to the campus DSMLP
+      ingress at 128.54.86.100 — but the endpoint shapes are supplied by the LiteLLM proxy
+      software the institution runs, not authored by UC San Diego. The surface is
+      credential-gated and is not documented on tritonai.ucsd.edu/developer-apis/.
+  - id: saml
+    name: SAML 2.0 metadata
+    status: conformant
+    operator: institution
+    evidence:
+      - what: SAML 2.0 EntityDescriptor for entityID urn:mace:incommon:ucsd.edu
+        url: https://mdq.incommon.org/entities/urn%3Amace%3Aincommon%3Aucsd.edu
+        status: 200
+        content_type: application/samlmetadata+xml
+        location: /EntityDescriptor[@entityID='urn:mace:incommon:ucsd.edu']
+        detail: >-
+          OrganizationName "University of California-San Diego"; validUntil
+          2026-09-02T20:37:10.023Z; SingleSignOnService HTTP-POST at
+          https://a5.ucsd.edu/tritON/profile/SAML2/POST/SSO and HTTP-Redirect at
+          https://a5.ucsd.edu/tritON/profile/SAML2/Redirect/SSO
+  - id: shibboleth
+    name: Shibboleth Identity Provider
+    status: conformant
+    operator: institution
+    evidence:
+      - what: Shibboleth IdP serving the SSO bindings named in the InCommon metadata
+        url: https://a5.ucsd.edu/tritON/profile/SAML2/POST/SSO
+        status: 400
+        detail: >-
+          Returns the Shibboleth IdP "Web Login Service - Stale Request" view for an
+          unsolicited GET, which is the IdP responding, not an error page. a5.ucsd.edu
+          resolves to 169.228.220.42, inside UC San Diego address space. A sibling node at
+          https://a4.ucsd.edu/tritON/ returns 200 OK.
+      - what: IdP metadata path present but the backing file is not published
+        url: https://a5.ucsd.edu/tritON/shibboleth
+        status: 200
+        detail: >-
+          Returns "/opt2/shib4/shibboleth-idp/metadata/idp-metadata.xml (No such file or
+          directory)" — the local metadata endpoint is deliberately not served; InCommon MDQ
+          is the published distribution channel.
+  - id: datacite
+    name: DataCite DOI registration
+    status: conformant
+    operator: tenant
+    evidence:
+      - what: DataCite repository account CDL.UCSD, "UC San Diego", registered 2012
+        url: https://api.datacite.org/clients/cdl.ucsd
+        status: 200
+      - what: 22,934 DOIs under prefix 10.6075 resolving to library.ucsd.edu/dc landing pages
+        url: https://api.datacite.org/dois?query=publisher:%22UC%20San%20Diego%20Library%20Digital%20Collections%22
+        status: 200
+        detail: 'meta.total = 22934; samples 10.6075/j05m66px, 10.6075/j09c6zd8, 10.6075/j0f47q40'
+    caveat: >-
+      The DOIs, the metadata and the landing pages are UC San Diego's. The registration
+      agency API is DataCite's and the membership is held through the California Digital
+      Library, so the contract is not the institution's.
+absent:
+  - id: oai-pmh
+    name: OAI-PMH
+    status: not_found
+    detail: >-
+      Probed with ?verb=Identify at https://library.ucsd.edu/dc/oai (404),
+      https://library.ucsd.edu/dc/oai/oai (404) and https://library.ucsd.edu/oai (404, campus
+      CMS 404 page). The re3data record r3d100011577 carries no <r3d:api> element. UC San Diego
+      Library Digital Collections exposes JSON over Solr instead — see
+      openapi/ucsd-library-digital-collections-openapi.yml. The rate-limits artifact previously
+      asserted an OAI-PMH surface; that claim was unverified and has been corrected.
+  - id: lti
+    name: 1EdTech Learning Tools Interoperability
+    status: not_found
+    detail: No public LTI tool or platform registration surface was found on a ucsd.edu host.
+  - id: oneroster
+    name: 1EdTech OneRoster
+    status: not_found
+    detail: No OneRoster endpoint found; campus rostering is not publicly exposed.
+  - id: caliper
+    name: 1EdTech Caliper Analytics
+    status: not_found
+    detail: No Caliper event store or sensor endpoint found.
+  - id: qti
+    name: 1EdTech QTI
+    status: not_found
+    detail: No QTI item bank surface found.
+  - id: ed-fi
+    name: Ed-Fi Data Standard
+    status: not_applicable
+    detail: Ed-Fi targets K-12 state education agencies; not applicable to a UC campus.
+  - id: orcid
+    name: ORCID
+    status: not_found
+    detail: >-
+      No institution-operated ORCID member API integration surface was found. UC San Diego has
+      no Elsevier Pure / Symplectic research-information tenant in this profile, which is the
+      usual place an institutional ORCID integration is exposed.
+  - id: crossref
+    name: Crossref
+    status: not_found
+    detail: >-
+      No Crossref member account was found for the institution; UC San Diego Library registers
+      through DataCite (CDL.UCSD), not Crossref.
