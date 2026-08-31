@@ -444,6 +444,8 @@ apis:
   humanURL: https://tritonai.ucsd.edu/developer-apis/index.html
   baseURL: https://tritonai-api.ucsd.edu
   tags:
+  - Objects
+  tags_raw:
   - objects
   properties:
   - type: OpenAPI
@@ -462,6 +464,8 @@ apis:
   humanURL: https://tritonai.ucsd.edu/developer-apis/index.html
   baseURL: https://tritonai-api.ucsd.edu
   tags:
+  - Search
+  tags_raw:
   - search
   properties:
   - type: OpenAPI
