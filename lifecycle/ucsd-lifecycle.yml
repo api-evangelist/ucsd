@@ -1,0 +1,85 @@
+generated: '2026-08-19'
+method: probed
+source: >-
+  https://tritonai-api.ucsd.edu/openapi.json, https://api.ucsd.edu/services/Version,
+  https://mdq.incommon.org/entities/urn%3Amace%3Aincommon%3Aucsd.edu,
+  https://library.ucsd.edu/dc/object/bb38236995.json
+provider: University of California, San Diego
+providerId: ucsd
+description: >-
+  Versioning and lifecycle posture of UC San Diego's institution-operated API surfaces. UC San
+  Diego publishes no deprecation policy, no changelog and no sunset schedule for any of them.
+  Everything below was read from a live response, not from a published commitment, and the
+  absence of a stated policy is itself the finding.
+surfaces:
+  - name: TritonAI Developer API (LiteLLM Gateway)
+    host: tritonai-api.ucsd.edu
+    x-operator: institution
+    version_source: info.version in the live OpenAPI document
+    version_observed: 1.97.0
+    version_semantics: >-
+      The version reported is the LiteLLM proxy software release, not a UC San Diego contract
+      version. It moves when the institution upgrades the software, so a consumer cannot use it
+      as a stability signal for the campus-facing surface.
+    path_versioning: >-
+      Inference endpoints are namespaced /v1/ (chat, completions, embeddings, images); audio is
+      unversioned (/audio/speech, /audio/transcriptions); SCIM is /scim/v2.
+    deprecation_policy: none published
+    sunset_headers: not observed
+    changelog: >-
+      TritonAI publishes a human-readable "TritonAI Updates" and "Feature Updates" page for
+      campus users at https://tritonai.ucsd.edu/, but no machine-readable changelog or release
+      feed for the API.
+    stability: >-
+      The model catalogue the gateway exposes changes as UC San Diego approves and retires
+      vendor models; the documented request contract is OpenAI-compatible and therefore stable
+      by convention rather than by commitment.
+  - name: UC San Diego API Gateway (WSO2 API Manager)
+    host: api.ucsd.edu
+    x-operator: institution
+    version_source: https://api.ucsd.edu/services/Version
+    version_observed: WSO2 API Manager-4.1.0
+    version_semantics: >-
+      Product version of the gateway software, not of any API published on it. WSO2 API Manager
+      4.1.0 reached end of general support upstream; the institution is running a release well
+      behind current.
+    path_versioning: >-
+      Two generations of management API are live side by side. The current /api/am/devportal/v2/*
+      answers 401; the legacy /store and /api/am/store/v0.17/* paths 302 to
+      /carbon/admin/login.jsp instead of returning 404 or 410, so retired routes still answer 200
+      to a redirect-following client.
+    deprecation_policy: none published
+    sunset_headers: not observed
+    changelog: none published
+  - name: UC San Diego Shibboleth Identity Provider (InCommon)
+    host: a5.ucsd.edu
+    x-operator: institution
+    version_source: InCommon MDQ EntityDescriptor
+    version_observed: 'validUntil 2026-09-02T20:37:10.023Z'
+    version_semantics: >-
+      Federation metadata carries an explicit validity window rather than a version number, and
+      InCommon re-signs on a short cycle. This is the only UC San Diego surface with a
+      machine-readable expiry, and consumers are expected to re-fetch before it lapses.
+    deprecation_policy: governed by InCommon federation practice, not by the institution
+    sunset_headers: not applicable
+    changelog: >-
+      Changes are distributed through the MDQ service itself; there is no institution-published
+      change feed.
+  - name: UC San Diego Library Digital Collections JSON API
+    host: library.ucsd.edu
+    x-operator: institution
+    version_source: none
+    version_observed: null
+    version_semantics: >-
+      The interface is unversioned and undocumented. It is a serialization of the Blacklight/Solr
+      index that backs the public HTML site, so field names follow the Samvera dynamic-field
+      suffix convention and can change whenever the index schema changes, without notice.
+    path_versioning: none
+    deprecation_policy: none published
+    sunset_headers: not observed
+    stability_signal: >-
+      Individual records carry system_create_dtsi and system_modified_dtsi timestamps, so record
+      churn is observable even though the interface itself is not.
+    risk: >-
+      Highest-risk surface for a consumer in this profile: fully open, genuinely useful, and
+      carrying no versioning, documentation or deprecation commitment of any kind.

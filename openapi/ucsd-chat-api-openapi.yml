@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: TritonAI Developer API (LiteLLM Gateway) audio chat API
-  description: OpenAI-compatible LLM gateway operated by UC San Diego, powered by LiteLLM. This OpenAPI 3.0 description was faithfully derived from the live LiteLLM OpenAPI 3.1 document published at https://tritonai-api.ucsd.edu/openapi.json and scoped to the core, OpenAI-compatible inference surface that TritonAI documents (chat, completions, embeddings, model listing, image generation, and audio). Access is restricted to approved UC San Diego faculty, staff, researchers, and campus teams authenticated with issued API keys.
+  title: TritonAI Developer API (LiteLLM Gateway) Chat API
+  description: OpenAI-compatible LLM gateway operated by UC San Diego, powered by LiteLLM.
   version: 1.0.0
   contact:
     name: TritonAI
@@ -13,13 +13,13 @@ servers:
 security:
 - bearerAuth: []
 tags:
-- name: chat
+- name: Chat
   description: Chat completion endpoints.
 paths:
   /v1/chat/completions:
     post:
       tags:
-      - chat
+      - Chat
       summary: Chat Completion
       operationId: chat_completion
       description: Create a model response for the given chat conversation. Follows the OpenAI chat completions request/response contract.
@@ -45,6 +45,38 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    HTTPValidationError:
+      type: object
+      title: HTTPValidationError
+      properties:
+        detail:
+          type: array
+          title: Detail
+          items:
+            $ref: '#/components/schemas/ValidationError'
+    ChatCompletionMessage:
+      type: object
+      required:
+      - role
+      properties:
+        role:
+          type: string
+          enum:
+          - system
+          - user
+          - assistant
+          - tool
+          - function
+          - developer
+        content:
+          oneOf:
+          - type: string
+          - type: array
+            items:
+              $ref: '#/components/schemas/ChatCompletionContentObject'
+        name:
+          type: string
+      additionalProperties: true
     ChatCompletionRequest:
       type: object
       required:
@@ -90,38 +122,6 @@ components:
         type:
           type: string
           title: Error Type
-    HTTPValidationError:
-      type: object
-      title: HTTPValidationError
-      properties:
-        detail:
-          type: array
-          title: Detail
-          items:
-            $ref: '#/components/schemas/ValidationError'
-    ChatCompletionMessage:
-      type: object
-      required:
-      - role
-      properties:
-        role:
-          type: string
-          enum:
-          - system
-          - user
-          - assistant
-          - tool
-          - function
-          - developer
-        content:
-          oneOf:
-          - type: string
-          - type: array
-            items:
-              $ref: '#/components/schemas/ChatCompletionContentObject'
-        name:
-          type: string
-      additionalProperties: true
     ChatCompletionContentObject:
       type: object
       required:

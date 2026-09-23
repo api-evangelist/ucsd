@@ -4,7 +4,7 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: University of California, San Diego
 providerId: ucsd
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-08-19'
 reconciled: false
 tags:
 - Education
@@ -12,11 +12,19 @@ tags:
 - University
 - Rate Limiting
 description: >-
-  University of California, San Diego does not publish a unified public rate-limit table across its APIs. Open
-  metadata and harvesting endpoints (OAI-PMH, IIIF, library) may throttle large-scale
-  or automated harvesting; clients should harvest politely, honor Retry-After, and
-  contact the relevant service for bulk access.
-notes: Confirm per-service limits with each API's documentation; harvest responsibly.
+  University of California, San Diego does not publish a unified public rate-limit table across
+  its APIs, and no per-service limit was found in any published document. Probed 2026-08-19: the
+  Library Digital Collections JSON endpoints (library.ucsd.edu/dc/search.json,
+  /dc/object/{id}.json) answered anonymously with no rate-limit headers and no documented cap;
+  the campus API gateway (api.ucsd.edu, WSO2 API Manager 4.1.0) and the TritonAI LLM gateway
+  (tritonai-api.ucsd.edu) both enforce limits behind credentials that are issued only to campus
+  affiliates, so their tiers are not externally observable. Harvest politely, honor Retry-After,
+  and contact the service owner for bulk access.
+notes: >-
+  Confirm per-service limits with each API's owner; harvest responsibly. CORRECTION 2026-08-19:
+  an earlier version of this artifact asserted throttling on "OAI-PMH, IIIF, library" endpoints.
+  No OAI-PMH or IIIF surface exists on a ucsd.edu host — see conformance/ucsd-conformance.yml —
+  and that claim has been removed rather than restated.
 sources:
 - https://raw.githubusercontent.com/api-evangelist/ucsd/refs/heads/main/apis.yml
 responseCodes:

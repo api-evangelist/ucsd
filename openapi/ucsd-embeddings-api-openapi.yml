@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: TritonAI Developer API (LiteLLM Gateway) audio embeddings API
-  description: OpenAI-compatible LLM gateway operated by UC San Diego, powered by LiteLLM. This OpenAPI 3.0 description was faithfully derived from the live LiteLLM OpenAPI 3.1 document published at https://tritonai-api.ucsd.edu/openapi.json and scoped to the core, OpenAI-compatible inference surface that TritonAI documents (chat, completions, embeddings, model listing, image generation, and audio). Access is restricted to approved UC San Diego faculty, staff, researchers, and campus teams authenticated with issued API keys.
+  title: TritonAI Developer API (LiteLLM Gateway) Embeddings API
+  description: OpenAI-compatible LLM gateway operated by UC San Diego, powered by LiteLLM.
   version: 1.0.0
   contact:
     name: TritonAI
@@ -13,13 +13,13 @@ servers:
 security:
 - bearerAuth: []
 tags:
-- name: embeddings
+- name: Embeddings
   description: Embedding generation endpoints.
 paths:
   /v1/embeddings:
     post:
       tags:
-      - embeddings
+      - Embeddings
       summary: Embeddings
       operationId: embeddings
       description: Create an embedding vector representing the input text.
@@ -54,6 +54,23 @@ components:
           title: Detail
           items:
             $ref: '#/components/schemas/ValidationError'
+    EmbeddingRequest:
+      type: object
+      required:
+      - model
+      properties:
+        model:
+          type: string
+          title: Model
+        input:
+          type: array
+          default: []
+          items:
+            type: string
+        timeout:
+          type: integer
+          default: 600
+      additionalProperties: true
     ValidationError:
       type: object
       title: ValidationError
@@ -75,23 +92,6 @@ components:
         type:
           type: string
           title: Error Type
-    EmbeddingRequest:
-      type: object
-      required:
-      - model
-      properties:
-        model:
-          type: string
-          title: Model
-        input:
-          type: array
-          default: []
-          items:
-            type: string
-        timeout:
-          type: integer
-          default: 600
-      additionalProperties: true
   securitySchemes:
     bearerAuth:
       type: http

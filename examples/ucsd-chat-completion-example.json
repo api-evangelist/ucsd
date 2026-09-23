@@ -1,9 +1,21 @@
 {
+  "x-provenance": {
+    "generated": "2026-07-11",
+    "method": "generated",
+    "source": "openapi/_original/ucsd-tritonai.yaml",
+    "note": "Illustrative request/response synthesized from the OpenAPI schema. NOT captured from the TritonAI gateway and NOT published by UC San Diego; the gateway requires an issued API key and was never called."
+  },
   "request": {
     "model": "gpt-4o",
     "messages": [
-      { "role": "system", "content": "You are a helpful UC San Diego campus assistant." },
-      { "role": "user", "content": "Summarize the TritonAI gateway in one sentence." }
+      {
+        "role": "system",
+        "content": "You are a helpful UC San Diego campus assistant."
+      },
+      {
+        "role": "user",
+        "content": "Summarize the TritonAI gateway in one sentence."
+      }
     ],
     "temperature": 0.2,
     "max_tokens": 128

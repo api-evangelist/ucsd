@@ -1,6 +1,6 @@
 generated: '2026-07-11'
 method: derived
-source: openapi/ucsd-tritonai.yaml
+source: openapi/_original/ucsd-tritonai.yaml
 summary:
   types:
   - http
@@ -10,4 +10,48 @@ schemes:
   scheme: bearer
   description: Issued TritonAI API key passed as a Bearer token.
   sources:
-  - openapi/ucsd-tritonai.yaml
+  - openapi/_original/ucsd-tritonai.yaml
+surfaces:
+- name: TritonAI Developer API (LiteLLM Gateway)
+  host: tritonai-api.ucsd.edu
+  x-operator: institution
+  scheme: bearerAuth
+  method: derived
+  source: openapi/_original/ucsd-tritonai.yaml
+- name: UC San Diego API Gateway (WSO2 API Manager 4.1.0)
+  host: api.ucsd.edu
+  x-operator: institution
+  scheme: OAuth 2.0 / OpenID Connect via the gateway's internal key manager
+  method: probed
+  source: https://api.ucsd.edu/api/am/devportal/v2/settings
+  notes: >-
+    IsAnonymousModeEnabled=false and identityProvider.external=false; the API catalogue returns
+    401 to anonymous clients. Credentials are issued to UC San Diego affiliates through Single
+    Sign-On, not through self-serve registration. See scopes/ucsd-scopes.yml.
+- name: UC San Diego Shibboleth Identity Provider (TritON)
+  host: a5.ucsd.edu
+  x-operator: institution
+  scheme: SAML 2.0 Web Browser SSO — HTTP-POST and HTTP-Redirect bindings
+  method: probed
+  source: https://mdq.incommon.org/entities/urn%3Amace%3Aincommon%3Aucsd.edu
+  notes: >-
+    Registered in InCommon (and via InCommon in eduGAIN) as urn:mace:incommon:ucsd.edu. This is
+    the authentication layer behind nearly every gated campus API.
+- name: UC San Diego Library Digital Collections JSON API
+  host: library.ucsd.edu
+  x-operator: institution
+  scheme: none — anonymous read
+  method: probed
+  source: https://library.ucsd.edu/dc/search.json?q=ocean
+  notes: >-
+    No authorization layer. Access control is enforced server-side by a fixed Solr filter query
+    on discover_access_group_ssim.
+- name: UC San Diego Web API Portal
+  host: collab.ucsd.edu
+  x-operator: tenant
+  scheme: Atlassian Confluence Cloud SSO
+  method: probed
+  source: https://collab.ucsd.edu/api/api-documentation
+  notes: >-
+    302 to ucsdcollab.atlassian.net/wiki. The documentation is gated by the Atlassian tenant's
+    own SSO, not by a UC San Diego API authorization layer.

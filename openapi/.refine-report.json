@@ -1,14 +1,14 @@
 {
   "provider": "ucsd",
   "sources": [
-    "ucsd-audio-api-openapi.yml",
-    "ucsd-chat-api-openapi.yml",
-    "ucsd-completions-api-openapi.yml",
-    "ucsd-embeddings-api-openapi.yml",
-    "ucsd-images-api-openapi.yml",
-    "ucsd-models-api-openapi.yml"
+    "_original/ucsd-library-digital-collections-openapi.yml",
+    "_original/ucsd-tritonai-scim.yaml",
+    "_original/ucsd-tritonai.yaml"
   ],
   "outputs": [
+    "ucsd-objects-api-openapi.yml",
+    "ucsd-search-api-openapi.yml",
+    "ucsd-scim-api-openapi.yml",
     "ucsd-audio-api-openapi.yml",
     "ucsd-chat-api-openapi.yml",
     "ucsd-completions-api-openapi.yml",
@@ -19,6 +19,24 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "1 archived document(s) dropped as subsets of other archived documents",
+    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "ucsd-library-digital-collections-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "ucsd-tritonai-scim.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "ucsd-tritonai.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "_original/ucsd-library-digital-collections.yaml: archived document superseded by a larger archived document",
+    "ucsd-audio-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ucsd-chat-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ucsd-completions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ucsd-embeddings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ucsd-images-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ucsd-models-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ucsd-objects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ucsd-scim-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ucsd-search-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

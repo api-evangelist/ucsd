@@ -1,7 +1,15 @@
-openapi: 3.2.0
+openapi: 3.0.3
 info:
-  title: TritonAI Developer API (LiteLLM Gateway) 2.0 SCIM API
-  description: SCIM 2.0 (RFC 7643 / RFC 7644) user and group provisioning surface exposed by the TritonAI LLM gateway that UC San Diego operates at https://tritonai-api.ucsd.edu.
+  title: TritonAI Developer API (LiteLLM Gateway) SCIM 2.0 API
+  description: SCIM 2.0 (RFC 7643 / RFC 7644) user and group provisioning surface exposed by the TritonAI
+    LLM gateway that UC San Diego operates at https://tritonai-api.ucsd.edu. The gateway runs on UC San
+    Diego infrastructure (its-dsmlp-p3inf-ingress-01.ucsd.edu, 128.54.86.100 — the campus Data Science/ML
+    Platform ingress), so the deployment is the institution's; the endpoint shapes are supplied by the
+    LiteLLM proxy software the institution runs. This document was derived on 2026-08-19 from the live
+    OpenAPI 3.1 description the gateway publishes at https://tritonai-api.ucsd.edu/openapi.json, filtered
+    to the operations LiteLLM tags `scim`. UC San Diego does not document this surface on https://tritonai.ucsd.edu/developer-apis/
+    — it is an administrative provisioning surface, not part of the campus-facing inference contract,
+    and it is credential-gated.
   version: 1.97.0
   contact:
     name: TritonAI
@@ -13,7 +21,7 @@ servers:
 security:
 - bearerAuth: []
 tags:
-- name: SCIM
+- name: scim
   description: SCIM 2.0 user, group, schema and service-provider-config endpoints.
 paths:
   /scim/v2:
@@ -50,7 +58,7 @@ paths:
       - APIKeyHeader: []
       summary: Get Scim Base
       tags:
-      - SCIM
+      - scim
   /scim/v2/Groups:
     get:
       description: Get a list of groups according to SCIM v2 protocol
@@ -106,7 +114,7 @@ paths:
       - APIKeyHeader: []
       summary: Get Groups
       tags:
-      - SCIM
+      - scim
     post:
       description: Create a group according to SCIM v2 protocol
       operationId: create_group_scim_v2_Groups_post
@@ -142,7 +150,7 @@ paths:
       - APIKeyHeader: []
       summary: Create Group
       tags:
-      - SCIM
+      - scim
   /scim/v2/Groups/{group_id}:
     delete:
       description: Delete a group according to SCIM v2 protocol
@@ -175,7 +183,7 @@ paths:
       - APIKeyHeader: []
       summary: Delete Group
       tags:
-      - SCIM
+      - scim
     get:
       description: Get a single group by ID according to SCIM v2 protocol
       operationId: get_group_scim_v2_Groups__group_id__get
@@ -211,7 +219,7 @@ paths:
       - APIKeyHeader: []
       summary: Get Group
       tags:
-      - SCIM
+      - scim
     patch:
       description: Patch a group according to SCIM v2 protocol
       operationId: patch_group_scim_v2_Groups__group_id__patch
@@ -253,7 +261,7 @@ paths:
       - APIKeyHeader: []
       summary: Patch Group
       tags:
-      - SCIM
+      - scim
     put:
       description: Update a group according to SCIM v2 protocol
       operationId: update_group_scim_v2_Groups__group_id__put
@@ -295,7 +303,7 @@ paths:
       - APIKeyHeader: []
       summary: Update Group
       tags:
-      - SCIM
+      - scim
   /scim/v2/ResourceTypes:
     get:
       description: 'SCIM ResourceTypes endpoint per RFC 7644 Section 4.
@@ -328,7 +336,7 @@ paths:
       - APIKeyHeader: []
       summary: Get Resource Types
       tags:
-      - SCIM
+      - scim
   /scim/v2/ResourceTypes/{resource_type_id}:
     get:
       description: Get a single ResourceType by ID per RFC 7644.
@@ -364,7 +372,7 @@ paths:
       - APIKeyHeader: []
       summary: Get Resource Type
       tags:
-      - SCIM
+      - scim
   /scim/v2/Schemas:
     get:
       description: 'SCIM Schemas endpoint per RFC 7643 Section 7.
@@ -397,7 +405,7 @@ paths:
       - APIKeyHeader: []
       summary: Get Schemas
       tags:
-      - SCIM
+      - scim
   /scim/v2/Schemas/{schema_id}:
     get:
       description: Get a single Schema by its URI per RFC 7643 Section 7.
@@ -433,7 +441,7 @@ paths:
       - APIKeyHeader: []
       summary: Get Schema
       tags:
-      - SCIM
+      - scim
   /scim/v2/ServiceProviderConfig:
     get:
       description: Return SCIM Service Provider Configuration.
@@ -464,7 +472,7 @@ paths:
       - APIKeyHeader: []
       summary: Get Service Provider Config
       tags:
-      - SCIM
+      - scim
   /scim/v2/Users:
     get:
       description: Get a list of users according to SCIM v2 protocol
@@ -520,7 +528,7 @@ paths:
       - APIKeyHeader: []
       summary: Get Users
       tags:
-      - SCIM
+      - scim
     post:
       description: Create a user according to SCIM v2 protocol
       operationId: create_user_scim_v2_Users_post
@@ -556,7 +564,7 @@ paths:
       - APIKeyHeader: []
       summary: Create User
       tags:
-      - SCIM
+      - scim
   /scim/v2/Users/{user_id}:
     delete:
       description: Delete a user according to SCIM v2 protocol
@@ -589,7 +597,7 @@ paths:
       - APIKeyHeader: []
       summary: Delete User
       tags:
-      - SCIM
+      - scim
     get:
       description: Get a single user by ID according to SCIM v2 protocol
       operationId: get_user_scim_v2_Users__user_id__get
@@ -625,7 +633,7 @@ paths:
       - APIKeyHeader: []
       summary: Get User
       tags:
-      - SCIM
+      - scim
     patch:
       description: Patch a user according to SCIM v2 protocol
       operationId: patch_user_scim_v2_Users__user_id__patch
@@ -667,7 +675,7 @@ paths:
       - APIKeyHeader: []
       summary: Patch User
       tags:
-      - SCIM
+      - scim
     put:
       description: Update a user according to SCIM v2 protocol (full replacement)
       operationId: update_user_scim_v2_Users__user_id__put
@@ -709,7 +717,7 @@ paths:
       - APIKeyHeader: []
       summary: Update User
       tags:
-      - SCIM
+      - scim
 components:
   schemas:
     HTTPValidationError:
@@ -721,6 +729,206 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    SCIMFeature:
+      properties:
+        maxOperations:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Maxoperations
+        maxPayloadSize:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Maxpayloadsize
+        maxResults:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Maxresults
+        supported:
+          title: Supported
+          type: boolean
+      required:
+      - supported
+      title: SCIMFeature
+      type: object
+    SCIMGroup:
+      properties:
+        displayName:
+          title: Displayname
+          type: string
+        externalId:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Externalid
+        id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Id
+        members:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/SCIMMember'
+            type: array
+          - type: 'null'
+          title: Members
+        meta:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Meta
+        schemas:
+          items:
+            type: string
+          title: Schemas
+          type: array
+      required:
+      - schemas
+      - displayName
+      title: SCIMGroup
+      type: object
+    SCIMListResponse:
+      properties:
+        Resources:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/SCIMUser'
+            type: array
+          - items:
+              $ref: '#/components/schemas/SCIMGroup'
+            type: array
+          title: Resources
+        itemsPerPage:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 10
+          title: Itemsperpage
+        schemas:
+          default:
+          - urn:ietf:params:scim:api:messages:2.0:ListResponse
+          items:
+            type: string
+          title: Schemas
+          type: array
+        startIndex:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 1
+          title: Startindex
+        totalResults:
+          title: Totalresults
+          type: integer
+      required:
+      - totalResults
+      - Resources
+      title: SCIMListResponse
+      type: object
+    SCIMMember:
+      properties:
+        display:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Display
+        value:
+          title: Value
+          type: string
+      required:
+      - value
+      title: SCIMMember
+      type: object
+    SCIMPatchOp:
+      properties:
+        Operations:
+          items:
+            $ref: '#/components/schemas/SCIMPatchOperation'
+          title: Operations
+          type: array
+        schemas:
+          default:
+          - urn:ietf:params:scim:api:messages:2.0:PatchOp
+          items:
+            type: string
+          title: Schemas
+          type: array
+      required:
+      - Operations
+      title: SCIMPatchOp
+      type: object
+    SCIMPatchOperation:
+      properties:
+        op:
+          title: Op
+          type: string
+        path:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Path
+        value:
+          anyOf:
+          - {}
+          - type: 'null'
+          title: Value
+      required:
+      - op
+      title: SCIMPatchOperation
+      type: object
+    SCIMServiceProviderConfig:
+      properties:
+        authenticationSchemes:
+          anyOf:
+          - items:
+              additionalProperties: true
+              type: object
+            type: array
+          - type: 'null'
+          title: Authenticationschemes
+        bulk:
+          $ref: '#/components/schemas/SCIMFeature'
+          default:
+            supported: false
+        changePassword:
+          $ref: '#/components/schemas/SCIMFeature'
+          default:
+            supported: false
+        etag:
+          $ref: '#/components/schemas/SCIMFeature'
+          default:
+            supported: false
+        filter:
+          $ref: '#/components/schemas/SCIMFeature'
+          default:
+            supported: false
+        meta:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Meta
+        patch:
+          $ref: '#/components/schemas/SCIMFeature'
+          default:
+            supported: true
+        schemas:
+          default:
+          - urn:ietf:params:scim:schemas:core:2.0:ServiceProviderConfig
+          items:
+            type: string
+          title: Schemas
+          type: array
+        sort:
+          $ref: '#/components/schemas/SCIMFeature'
+          default:
+            supported: false
+      title: SCIMServiceProviderConfig
+      type: object
     SCIMUser:
       properties:
         active:
@@ -780,62 +988,45 @@ components:
       - schemas
       title: SCIMUser
       type: object
-    SCIMPatchOperation:
+    SCIMUserEmail:
       properties:
-        op:
-          title: Op
-          type: string
-        path:
+        primary:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Primary
+        type:
           anyOf:
           - type: string
           - type: 'null'
-          title: Path
+          title: Type
         value:
-          anyOf:
-          - {}
-          - type: 'null'
+          format: email
           title: Value
-      required:
-      - op
-      title: SCIMPatchOperation
-      type: object
-    SCIMGroup:
-      properties:
-        displayName:
-          title: Displayname
           type: string
-        externalId:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Externalid
-        id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Id
-        members:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/SCIMMember'
-            type: array
-          - type: 'null'
-          title: Members
-        meta:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Meta
-        schemas:
-          items:
-            type: string
-          title: Schemas
-          type: array
       required:
-      - schemas
-      - displayName
-      title: SCIMGroup
+      - value
+      title: SCIMUserEmail
+      type: object
+    SCIMUserGroup:
+      properties:
+        display:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Display
+        type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: direct
+          title: Type
+        value:
+          title: Value
+          type: string
+      required:
+      - value
+      title: SCIMUserGroup
       type: object
     SCIMUserName:
       properties:
@@ -871,89 +1062,6 @@ components:
           title: Middlename
       title: SCIMUserName
       type: object
-    SCIMMember:
-      properties:
-        display:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Display
-        value:
-          title: Value
-          type: string
-      required:
-      - value
-      title: SCIMMember
-      type: object
-    SCIMServiceProviderConfig:
-      properties:
-        authenticationSchemes:
-          anyOf:
-          - items:
-              additionalProperties: true
-              type: object
-            type: array
-          - type: 'null'
-          title: Authenticationschemes
-        bulk:
-          $ref: '#/components/schemas/SCIMFeature'
-          default:
-            supported: false
-        changePassword:
-          $ref: '#/components/schemas/SCIMFeature'
-          default:
-            supported: false
-        etag:
-          $ref: '#/components/schemas/SCIMFeature'
-          default:
-            supported: false
-        filter:
-          $ref: '#/components/schemas/SCIMFeature'
-          default:
-            supported: false
-        meta:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Meta
-        patch:
-          $ref: '#/components/schemas/SCIMFeature'
-          default:
-            supported: true
-        schemas:
-          default:
-          - urn:ietf:params:scim:schemas:core:2.0:ServiceProviderConfig
-          items:
-            type: string
-          title: Schemas
-          type: array
-        sort:
-          $ref: '#/components/schemas/SCIMFeature'
-          default:
-            supported: false
-      title: SCIMServiceProviderConfig
-      type: object
-    SCIMUserEmail:
-      properties:
-        primary:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Primary
-        type:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Type
-        value:
-          format: email
-          title: Value
-          type: string
-      required:
-      - value
-      title: SCIMUserEmail
-      type: object
     ValidationError:
       properties:
         loc:
@@ -980,106 +1088,6 @@ components:
       - msg
       - type
       title: ValidationError
-    SCIMPatchOp:
-      properties:
-        Operations:
-          items:
-            $ref: '#/components/schemas/SCIMPatchOperation'
-          title: Operations
-          type: array
-        schemas:
-          default:
-          - urn:ietf:params:scim:api:messages:2.0:PatchOp
-          items:
-            type: string
-          title: Schemas
-          type: array
-      required:
-      - Operations
-      title: SCIMPatchOp
-      type: object
-    SCIMUserGroup:
-      properties:
-        display:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Display
-        type:
-          anyOf:
-          - type: string
-          - type: 'null'
-          default: direct
-          title: Type
-        value:
-          title: Value
-          type: string
-      required:
-      - value
-      title: SCIMUserGroup
-      type: object
-    SCIMListResponse:
-      properties:
-        Resources:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/SCIMUser'
-            type: array
-          - items:
-              $ref: '#/components/schemas/SCIMGroup'
-            type: array
-          title: Resources
-        itemsPerPage:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          default: 10
-          title: Itemsperpage
-        schemas:
-          default:
-          - urn:ietf:params:scim:api:messages:2.0:ListResponse
-          items:
-            type: string
-          title: Schemas
-          type: array
-        startIndex:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          default: 1
-          title: Startindex
-        totalResults:
-          title: Totalresults
-          type: integer
-      required:
-      - totalResults
-      - Resources
-      title: SCIMListResponse
-      type: object
-    SCIMFeature:
-      properties:
-        maxOperations:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Maxoperations
-        maxPayloadSize:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Maxpayloadsize
-        maxResults:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Maxresults
-        supported:
-          title: Supported
-          type: boolean
-      required:
-      - supported
-      title: SCIMFeature
-      type: object
   securitySchemes:
     bearerAuth:
       type: http

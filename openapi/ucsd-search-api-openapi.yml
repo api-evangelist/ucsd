@@ -1,13 +1,7 @@
 openapi: 3.2.0
 info:
   title: UC San Diego Library Digital Collections JSON Search API
-  description: 'Public, read-only JSON search-and-retrieval interface over the UC San Diego Library Digital Collections (DC), the Library''s locally developed Digital Asset Management System (DAMS). The stack is Fedora-backed and Blacklight/Solr-fronted, and the JSON representations are the same documents that back the public HTML interface — request `.json` on a search or object path and the Solr response is returned directly.
-
-    UC San Diego operates this service itself: `library.ucsd.edu` resolves inside UC San Diego address space (132.239.119.5) and is served from the Library''s own Apache origin, not from a repository vendor''s platform. It is registered on re3data as an institutional data provider (r3d100011577) and mints DOIs under the DataCite repository account CDL.UCSD (prefix 10.6075).
-
-    UC San Diego does NOT publish an OpenAPI description for this interface. This document was written by API Evangelist from live probes of the endpoints and their responses on 2026-08-19; it is a description of observed behaviour, not a contract the institution has committed to.
-
-    Note for automated clients: `library.ucsd.edu` fronts browser-like User-Agent strings with an Anubis proof-of-work bot challenge that returns HTTP 200 with a challenge body. Plain non-browser User-Agents (curl, python-requests) are served normally.'
+  description: Public, read-only JSON search-and-retrieval interface over the UC San Diego Library Digital Collections (DC), the Library's locally developed Digital Asset Management System (DAMS).
   version: 2026-08-19
   contact:
     name: UC San Diego Library — Research Data Curation
@@ -20,13 +14,13 @@ servers:
 - url: https://library.ucsd.edu
   description: UC San Diego Library Digital Collections (production)
 tags:
-- name: search
+- name: Search
   description: Faceted search across publicly discoverable digital objects and collections.
 paths:
   /dc/search.json:
     get:
       tags:
-      - search
+      - Search
       summary: Search digital collections
       operationId: searchDigitalCollections
       description: Runs a dismax keyword search across publicly discoverable objects and returns the raw Solr response, including facet counts and highlighting. The service applies a server-side filter of `discover_access_group_ssim:public OR discover_access_group_ssim:unknown`, so restricted and embargoed material is never returned to anonymous clients. `GET /dc/search?format=json` returns the same body.
