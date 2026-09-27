@@ -69,6 +69,45 @@ paths:
                 type: string
 components:
   schemas:
+    SolrSearchResponse:
+      type: object
+      description: Raw Solr response envelope as returned by the Blacklight front end.
+      properties:
+        responseHeader:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 0
+            QTime:
+              type: integer
+              example: 15
+            params:
+              type: object
+              additionalProperties: true
+        response:
+          type: object
+          properties:
+            numFound:
+              type: integer
+              example: 12939
+            start:
+              type: integer
+            maxScore:
+              type: number
+            numFoundExact:
+              type: boolean
+            docs:
+              type: array
+              items:
+                $ref: '#/components/schemas/DigitalObject'
+        facet_counts:
+          type: object
+          description: Facet field counts. Observed facets include unit_sim, collection_sim, creator_sim, decade_sim, object_type_sim, subject_topic_sim, subject_cruise_sim, subject_lithology_sim, subject_common_name_sim, subject_scientific_name_sim, subject_anatomy_sim, subject_series_sim and subject_cultural_context_sim.
+          additionalProperties: true
+        highlighting:
+          type: object
+          additionalProperties: true
     DigitalObject:
       type: object
       description: Solr document for a digital object. Field names follow the Samvera/Hydra dynamic field suffix convention (_tesim text stored indexed multivalued, _ssi string stored indexed, _sim string indexed multivalued, _dtsi date stored indexed).
@@ -125,42 +164,3 @@ components:
           type: string
           format: date-time
       additionalProperties: true
-    SolrSearchResponse:
-      type: object
-      description: Raw Solr response envelope as returned by the Blacklight front end.
-      properties:
-        responseHeader:
-          type: object
-          properties:
-            status:
-              type: integer
-              example: 0
-            QTime:
-              type: integer
-              example: 15
-            params:
-              type: object
-              additionalProperties: true
-        response:
-          type: object
-          properties:
-            numFound:
-              type: integer
-              example: 12939
-            start:
-              type: integer
-            maxScore:
-              type: number
-            numFoundExact:
-              type: boolean
-            docs:
-              type: array
-              items:
-                $ref: '#/components/schemas/DigitalObject'
-        facet_counts:
-          type: object
-          description: Facet field counts. Observed facets include unit_sim, collection_sim, creator_sim, decade_sim, object_type_sim, subject_topic_sim, subject_cruise_sim, subject_lithology_sim, subject_common_name_sim, subject_scientific_name_sim, subject_anatomy_sim, subject_series_sim and subject_cultural_context_sim.
-          additionalProperties: true
-        highlighting:
-          type: object
-          additionalProperties: true

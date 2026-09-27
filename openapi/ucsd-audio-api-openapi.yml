@@ -50,15 +50,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    HTTPValidationError:
-      type: object
-      title: HTTPValidationError
-      properties:
-        detail:
-          type: array
-          title: Detail
-          items:
-            $ref: '#/components/schemas/ValidationError'
     ValidationError:
       type: object
       title: ValidationError
@@ -80,6 +71,15 @@ components:
         type:
           type: string
           title: Error Type
+    HTTPValidationError:
+      type: object
+      title: HTTPValidationError
+      properties:
+        detail:
+          type: array
+          title: Detail
+          items:
+            $ref: '#/components/schemas/ValidationError'
   securitySchemes:
     bearerAuth:
       type: http
