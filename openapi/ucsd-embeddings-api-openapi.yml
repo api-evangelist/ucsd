@@ -66,15 +66,6 @@ components:
         type:
           type: string
           title: Error Type
-    HTTPValidationError:
-      type: object
-      title: HTTPValidationError
-      properties:
-        detail:
-          type: array
-          title: Detail
-          items:
-            $ref: '#/components/schemas/ValidationError'
     EmbeddingRequest:
       type: object
       required:
@@ -92,6 +83,15 @@ components:
           type: integer
           default: 600
       additionalProperties: true
+    HTTPValidationError:
+      type: object
+      title: HTTPValidationError
+      properties:
+        detail:
+          type: array
+          title: Detail
+          items:
+            $ref: '#/components/schemas/ValidationError'
   securitySchemes:
     bearerAuth:
       type: http
