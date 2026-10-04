@@ -45,6 +45,32 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    HTTPValidationError:
+      type: object
+      title: HTTPValidationError
+      properties:
+        detail:
+          type: array
+          title: Detail
+          items:
+            $ref: '#/components/schemas/ValidationError'
+    EmbeddingRequest:
+      type: object
+      required:
+      - model
+      properties:
+        model:
+          type: string
+          title: Model
+        input:
+          type: array
+          default: []
+          items:
+            type: string
+        timeout:
+          type: integer
+          default: 600
+      additionalProperties: true
     ValidationError:
       type: object
       title: ValidationError
@@ -66,32 +92,6 @@ components:
         type:
           type: string
           title: Error Type
-    EmbeddingRequest:
-      type: object
-      required:
-      - model
-      properties:
-        model:
-          type: string
-          title: Model
-        input:
-          type: array
-          default: []
-          items:
-            type: string
-        timeout:
-          type: integer
-          default: 600
-      additionalProperties: true
-    HTTPValidationError:
-      type: object
-      title: HTTPValidationError
-      properties:
-        detail:
-          type: array
-          title: Detail
-          items:
-            $ref: '#/components/schemas/ValidationError'
   securitySchemes:
     bearerAuth:
       type: http

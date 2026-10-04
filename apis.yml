@@ -125,47 +125,6 @@ x-coverage:
         Campus web DESIGN system ("Decorator 5", kitchen sink, accessibility) — not an API
         developer portal, despite the hostname.
 apis:
-- aid: ucsd:tritonai-chat-api
-  name: TritonAI Developer API — chat
-  description: >-
-    Chat completion endpoints on the OpenAI-compatible LLM gateway UC San Diego operates for approved
-    campus faculty, staff, researchers and teams. The gateway runs on the campus Data Science and Machine
-    Learning Platform ingress (its-dsmlp-p3inf-ingress-01.ucsd.edu, 128.54.86.100) and publishes a live
-    OpenAPI document anonymously; calls require an issued API key passed as a Bearer token.
-  x-operator: institution
-  humanURL: https://tritonai.ucsd.edu/developer-apis/index.html
-  baseURL: https://tritonai-api.ucsd.edu
-  tags:
-  - Chat
-  - Artificial Intelligence
-  - LLM Gateway
-  tags_raw:
-  - chat
-  - Artificial Intelligence
-  - LLM Gateway
-  properties:
-  - type: OpenAPI
-    url: openapi/ucsd-chat-api-openapi.yml
-  - type: Documentation
-    url: https://tritonai.ucsd.edu/developer-apis/index.html
-  - type: Signup
-    url: https://tritonai.ucsd.edu/developer-apis/index.html
-  - type: TermsOfService
-    url: https://tritonai.ucsd.edu/tritongpt/terms.html
-  - type: PrivacyPolicy
-    url: https://tritonai.ucsd.edu/tritongpt/privacy.html
-  - type: x-json-schema
-    url: json-schema/ucsd-chat-completion-request-schema.json
-  - type: x-json-structure
-    url: json-structure/ucsd-chat-completion-structure.json
-  - type: x-example
-    url: examples/ucsd-chat-completion-example.json
-  - type: x-spectral-rules
-    url: rules/ucsd-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/ucsd-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/ucsd-context.jsonld
 - aid: ucsd:tritonai-completions-api
   name: TritonAI Developer API — completions
   description: >-
@@ -478,6 +437,36 @@ apis:
     url: examples/ucsd-library-dc-search-example.json
   - type: x-errors
     url: errors/ucsd-errors.yml
+- aid: ucsd:ucsd-chat-completions-api
+  name: University of California, San Diego Chat Completions API
+  description: Chat completion endpoints.
+  humanURL: https://tritonai.ucsd.edu/developer-apis/index.html
+  baseURL: https://tritonai-api.ucsd.edu
+  tags:
+  - Chat Completions
+  properties:
+  - type: OpenAPI
+    url: openapi/ucsd-chat-completions-api-openapi.yml
+  - type: Documentation
+    url: https://tritonai.ucsd.edu/developer-apis/index.html
+  - type: Signup
+    url: https://tritonai.ucsd.edu/developer-apis/index.html
+  - type: TermsOfService
+    url: https://tritonai.ucsd.edu/tritongpt/terms.html
+  - type: PrivacyPolicy
+    url: https://tritonai.ucsd.edu/tritongpt/privacy.html
+  - type: x-json-schema
+    url: json-schema/ucsd-chat-completion-request-schema.json
+  - type: x-json-structure
+    url: json-structure/ucsd-chat-completion-structure.json
+  - type: x-example
+    url: examples/ucsd-chat-completion-example.json
+  - type: x-spectral-rules
+    url: rules/ucsd-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/ucsd-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/ucsd-context.jsonld
 common:
   - type: CapabilityMap
     url: capabilities/ucsd-capability-edges.yml

@@ -13,13 +13,13 @@ servers:
 security:
 - bearerAuth: []
 tags:
-- name: Chat
+- name: Chat Completions
   description: Chat completion endpoints.
 paths:
   /v1/chat/completions:
     post:
       tags:
-      - Chat
+      - Chat Completions
       summary: Chat Completion
       operationId: chat_completion
       description: Create a model response for the given chat conversation. Follows the OpenAI chat completions request/response contract.
@@ -45,27 +45,38 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    ValidationError:
+    HTTPValidationError:
       type: object
-      title: ValidationError
-      required:
-      - loc
-      - msg
-      - type
+      title: HTTPValidationError
       properties:
-        loc:
+        detail:
           type: array
-          title: Location
+          title: Detail
           items:
-            oneOf:
-            - type: string
-            - type: integer
-        msg:
+            $ref: '#/components/schemas/ValidationError'
+    ChatCompletionMessage:
+      type: object
+      required:
+      - role
+      properties:
+        role:
           type: string
-          title: Message
-        type:
+          enum:
+          - system
+          - user
+          - assistant
+          - tool
+          - function
+          - developer
+        content:
+          oneOf:
+          - type: string
+          - type: array
+            items:
+              $ref: '#/components/schemas/ChatCompletionContentObject'
+        name:
           type: string
-          title: Error Type
+      additionalProperties: true
     ChatCompletionContentObject:
       type: object
       required:
@@ -112,38 +123,27 @@ components:
         max_tokens:
           type: integer
       additionalProperties: true
-    ChatCompletionMessage:
+    ValidationError:
       type: object
+      title: ValidationError
       required:
-      - role
+      - loc
+      - msg
+      - type
       properties:
-        role:
-          type: string
-          enum:
-          - system
-          - user
-          - assistant
-          - tool
-          - function
-          - developer
-        content:
-          oneOf:
-          - type: string
-          - type: array
-            items:
-              $ref: '#/components/schemas/ChatCompletionContentObject'
-        name:
-          type: string
-      additionalProperties: true
-    HTTPValidationError:
-      type: object
-      title: HTTPValidationError
-      properties:
-        detail:
+        loc:
           type: array
-          title: Detail
+          title: Location
           items:
-            $ref: '#/components/schemas/ValidationError'
+            oneOf:
+            - type: string
+            - type: integer
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
   securitySchemes:
     bearerAuth:
       type: http
