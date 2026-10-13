@@ -1,0 +1,23 @@
+edges:
+- partner_name: OpenAI
+  partner: openai
+  partner_match: domain
+  type: contract
+  channel: provider-built
+  relationship: compatible
+  direction: provider-built
+  evidence: https://github.com/api-evangelist/ucsd/blob/main/openapi/ucsd-chat-completions-api-openapi.yml#L4
+  contract_reference:
+    repo: ucsd
+    spec_file: ucsd-chat-completions-api-openapi.yml
+    property: description
+    value: OpenAI-compatible
+    note: 'ucsd declares OpenAI compatibility: ''description: OpenAI-compatible LLM gateway operated by UC San Diego,
+      powered by LiteLLM.'''
+    detected_by: sweep-model-routing.py
+    detected: '2026-10-13'
+  detected_by: sweep-model-routing.py
+  first_seen: '2026-10-13'
+generated: '2026-10-13'
+method: searched
+checked: []
