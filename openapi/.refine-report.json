@@ -16,7 +16,9 @@
     "ucsd-images-api-openapi.yml",
     "ucsd-models-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
   "notes": [
@@ -25,12 +27,13 @@
     "ucsd-library-digital-collections-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "ucsd-tritonai-scim.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "ucsd-tritonai.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "apis.yml register: already-registered"
+    "superseded outputs removed: ucsd-chat-completions-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 13 total)"
   ],
   "skipped": [
     "_original/ucsd-library-digital-collections.yaml: archived document superseded by a larger archived document",
     "ucsd-audio-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "ucsd-chat-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ucsd-chat-completions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "ucsd-completions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "ucsd-embeddings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "ucsd-images-api-openapi.yml: previously refined output, superseded by openapi/_original/",

@@ -45,60 +45,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    HTTPValidationError:
-      type: object
-      title: HTTPValidationError
-      properties:
-        detail:
-          type: array
-          title: Detail
-          items:
-            $ref: '#/components/schemas/ValidationError'
-    ChatCompletionMessage:
-      type: object
-      required:
-      - role
-      properties:
-        role:
-          type: string
-          enum:
-          - system
-          - user
-          - assistant
-          - tool
-          - function
-          - developer
-        content:
-          oneOf:
-          - type: string
-          - type: array
-            items:
-              $ref: '#/components/schemas/ChatCompletionContentObject'
-        name:
-          type: string
-      additionalProperties: true
-    ChatCompletionContentObject:
-      type: object
-      required:
-      - type
-      properties:
-        type:
-          type: string
-          enum:
-          - text
-          - image_url
-          - input_audio
-        text:
-          type: string
-        image_url:
-          oneOf:
-          - type: string
-          - type: object
-            properties:
-              url:
-                type: string
-            additionalProperties: true
-      additionalProperties: true
     ChatCompletionRequest:
       type: object
       required:
@@ -144,6 +90,60 @@ components:
         type:
           type: string
           title: Error Type
+    ChatCompletionMessage:
+      type: object
+      required:
+      - role
+      properties:
+        role:
+          type: string
+          enum:
+          - system
+          - user
+          - assistant
+          - tool
+          - function
+          - developer
+        content:
+          oneOf:
+          - type: string
+          - type: array
+            items:
+              $ref: '#/components/schemas/ChatCompletionContentObject'
+        name:
+          type: string
+      additionalProperties: true
+    ChatCompletionContentObject:
+      type: object
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          enum:
+          - text
+          - image_url
+          - input_audio
+        text:
+          type: string
+        image_url:
+          oneOf:
+          - type: string
+          - type: object
+            properties:
+              url:
+                type: string
+            additionalProperties: true
+      additionalProperties: true
+    HTTPValidationError:
+      type: object
+      title: HTTPValidationError
+      properties:
+        detail:
+          type: array
+          title: Detail
+          items:
+            $ref: '#/components/schemas/ValidationError'
   securitySchemes:
     bearerAuth:
       type: http
